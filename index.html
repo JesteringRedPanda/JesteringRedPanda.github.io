@@ -1,0 +1,1890 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>日本に行きたい</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Klee+One:wght@400;600&family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Concept: a metro map for Japanese. Each deck is a colour-coded line, every entry carries a station-style code. */
+:root {
+  --bg: #EEF1F6; --card: #FFFFFF; --ink: #13203D; --muted: #566182; --line: #D4DAE6; --soft: #E3E8F1; --soft2: #F5F7FB;
+  --btn: #13203D; --btn-ink: #FFFFFF; --focus: #0A8FC1;
+  --c-hira: #E8860C; --c-kata: #0A8FC1; --c-kanji: #7A5BD6; --c-vocab: #1C9A55; --c-phrase: #D7413F;
+  --good: #1C8A4E; --good-bg: #DCF2E5; --bad: #C93434; --bad-bg: #FBE2E2;
+  --f-body: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, system-ui, sans-serif;
+  --f-disp: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --f-mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  --glyph: 'Klee One', 'Yu Kyokasho', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1324; --card: #161F36; --ink: #E9EDF7; --muted: #9AA6C4; --line: #2A3656; --soft: #1F2A47; --soft2: #121A2E;
+    --btn: #E9EDF7; --btn-ink: #0D1324; --focus: #3FB6E8;
+    --c-hira: #F5A23A; --c-kata: #3FB6E8; --c-kanji: #A28BFF; --c-vocab: #43C583; --c-phrase: #F2706E;
+    --good: #4CCB86; --good-bg: #153424; --bad: #F2706E; --bad-bg: #3A1B1E; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1324; --card: #161F36; --ink: #E9EDF7; --muted: #9AA6C4; --line: #2A3656; --soft: #1F2A47; --soft2: #121A2E;
+  --btn: #E9EDF7; --btn-ink: #0D1324; --focus: #3FB6E8;
+  --c-hira: #F5A23A; --c-kata: #3FB6E8; --c-kanji: #A28BFF; --c-vocab: #43C583; --c-phrase: #F2706E;
+  --good: #4CCB86; --good-bg: #153424; --bad: #F2706E; --bad-bg: #3A1B1E; color-scheme: dark;
+}
+:root[data-font="gothic"] { --glyph: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Yu Gothic', sans-serif; }
+:root[data-font="mincho"] { --glyph: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', serif; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.6 var(--f-body); }
+body.noscroll { overflow: hidden; }
+#app { max-width: 1060px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 14px 56px; }
+h1, h2, h3, h4 { font-family: var(--f-disp); font-weight: 700; line-height: 1.2; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(1.5rem, 4.4vw, 2.25rem); letter-spacing: -0.01em; }
+h2 { font-size: 1.25rem; } h3 { font-size: 1.05rem; } h4 { font-size: 1rem; margin: 18px 0 8px; }
+p { margin: 0 0 10px; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .5; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+.glyph { font-family: var(--glyph); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.muted { color: var(--muted); } .small { font-size: .82rem; } .ctr { text-align: center; justify-content: center; } .mt { margin-top: 14px; }
+.eyebrow { font: 500 .72rem/1.3 var(--f-mono); letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
+.dotc { width: 10px; height: 10px; border-radius: 50%; background: var(--c, var(--muted)); display: inline-block; flex: none; }
+.lab { font: 500 .72rem/1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 16px 0 6px; display: block; }
+.lab:first-child { margin-top: 0; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 14px 0; }
+kbd { font: 500 .7rem var(--f-mono); border: 1px solid currentColor; border-radius: 4px; padding: 0 5px; margin-left: 6px; opacity: .65; }
+
+/* header + nav */
+.top { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-bottom: 14px; border-bottom: 2px solid var(--ink); margin-bottom: 22px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.mark { width: 40px; height: 40px; border-radius: 50%; border: 4px solid var(--c-hira); display: grid; place-items: center; font: 700 1.1rem var(--f-disp); background: var(--card); }
+.bt { display: flex; flex-direction: column; line-height: 1.1; }
+.bt b { font: 700 1.3rem var(--f-disp); } .bt small { font: 500 .6rem var(--f-mono); letter-spacing: .14em; color: var(--muted); margin-top: 3px; }
+.nav { display: flex; gap: 4px; margin-left: auto; }
+.nav a { text-decoration: none; padding: 6px 12px; border-radius: 6px; display: flex; flex-direction: column; align-items: center; line-height: 1.15; border-bottom: 3px solid transparent; }
+.nav .k { font: 700 1rem var(--f-disp); } .nav .e { font: 500 .62rem var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.nav a:hover { background: var(--soft); } .nav a.on { border-bottom-color: var(--ink); background: var(--soft); }
+#chips { display: flex; gap: 6px; flex-wrap: wrap; width: 100%; }
+.stat { font: 500 .74rem var(--f-mono); background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; color: var(--muted); }
+.stat b { color: var(--ink); }
+@media (min-width: 900px) { #chips { width: auto; } }
+@media (max-width: 760px) {
+  .nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; margin: 0; background: var(--card); border-top: 2px solid var(--ink); justify-content: space-between; gap: 0;
+    padding: 4px max(8px, env(safe-area-inset-right, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); }
+  .nav a { flex: 1; padding: 6px 2px; border-bottom: 0; border-top: 3px solid transparent; border-radius: 0; }
+  .nav a.on { border-top-color: var(--ink); }
+  #app { padding-block: 14px 96px; }
+}
+
+/* generic */
+.page { display: flex; flex-direction: column; gap: 16px; }
+.ph { margin-bottom: 4px; } .sub { color: var(--muted); max-width: 62ch; margin-top: 8px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; min-width: 0; }
+.card > h2 { margin-bottom: 10px; } .card.tip { background: var(--soft2); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.btn { background: var(--btn); color: var(--btn-ink); border: 1.5px solid var(--btn); border-radius: 8px; padding: 9px 16px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+.btn:hover:not(:disabled) { filter: brightness(1.12); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); } .btn.ghost:hover:not(:disabled) { border-color: var(--ink); filter: none; }
+.btn.lg { padding: 13px 20px; font-size: 1.02rem; } .btn.sm { padding: 3px 10px; font-size: .8rem; }
+.btn.danger { background: var(--bad); border-color: var(--bad); color: #fff; }
+.link { background: none; border: 0; padding: 2px 0; text-decoration: underline; text-underline-offset: 3px; color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.chip { background: var(--card); border: 1.5px solid var(--line); border-radius: 999px; padding: 4px 13px; font-size: .86rem; display: inline-flex; gap: 6px; align-items: center; }
+.chip:hover { border-color: var(--ink); } .chip.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tabs { display: flex; gap: 2px; border-bottom: 2px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.tab { background: none; border: 0; padding: 10px 16px; font-weight: 700; border-bottom: 4px solid transparent; margin-bottom: -2px; white-space: nowrap; color: var(--muted); --c: var(--ink); }
+.tab:hover { color: var(--ink); } .tab.on { color: var(--ink); border-bottom-color: var(--c); }
+.ibtn { background: none; border: 1.5px solid var(--line); border-radius: 8px; width: 38px; height: 38px; display: inline-grid; place-items: center; flex: none; }
+.ibtn:hover { border-color: var(--ink); }
+.empty { text-align: center; color: var(--muted); padding: 30px 0; }
+.prog { height: 8px; background: var(--soft); border-radius: 99px; overflow: hidden; flex: 1; }
+.prog i { display: block; height: 100%; background: var(--ink); border-radius: 99px; transition: width .3s; } .prog.thin { height: 6px; }
+.seg { height: 8px; background: var(--soft); border-radius: 99px; display: flex; overflow: hidden; width: 100%; }
+.seg i { height: 100%; background: var(--c); } .seg .s2 { opacity: .6; } .seg .s1 { opacity: .3; }
+.stats3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
+.stats3 > div, .stat4 .sc { background: var(--soft2); border: 1px solid var(--line); border-radius: 8px; padding: 12px; text-align: center; }
+.stats3 b, .sc b { display: block; font: 700 1.6rem/1.1 var(--f-mono); } .stats3 span, .sc span { font-size: .78rem; color: var(--muted); }
+.stat4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; } .stat4 .sc { background: var(--card); }
+@media (max-width: 560px) { .stat4 { grid-template-columns: repeat(2, 1fr); } }
+.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } .cols2 > * { min-width: 0; }
+@media (max-width: 760px) { .cols2 { grid-template-columns: 1fr; } }
+.plain { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.steps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; }
+.sech { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+textarea, input[type=search], .gin { font: inherit; color: var(--ink); background: var(--card); border: 1.5px solid var(--line); border-radius: 8px; padding: 9px 12px; width: 100%; }
+.anout { font: 400 .8rem/1.4 var(--f-mono); margin-top: 8px; resize: vertical; }
+
+/* dex */
+.deckbar { display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--card); border: 1px solid var(--line); border-left: 6px solid var(--c); border-radius: 10px; padding: 14px 16px; }
+.deckinfo { flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.toolbar .chips { margin: 0; } .search { flex: 1 1 240px; max-width: 420px; }
+.kgroup { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.kh { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 4px; } .kh span { color: var(--muted); font-size: .84rem; }
+.kgrid { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 8px; }
+.kgrid.kj { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
+.cell { --c: var(--c-hira); position: relative; background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--c); border-radius: 8px; padding: 18px 4px 8px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0; transition: transform .12s; }
+.cell:hover { transform: translateY(-2px); border-color: var(--ink); border-left-color: var(--c); }
+.cell .glyph { font-size: clamp(1.5rem, 5.6vw, 2.2rem); line-height: 1.1; opacity: .55; }
+.cell.kj .glyph { font-size: 2rem; }
+.cell .cap { font: 500 .72rem var(--f-mono); color: var(--muted); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cell .code { position: absolute; top: 3px; left: 6px; font: 500 .6rem var(--f-mono); color: var(--muted); letter-spacing: .04em; }
+.cell .n5 { position: absolute; top: 3px; right: 5px; font: 500 .58rem var(--f-mono); color: var(--muted); }
+.cell.l1 { background: color-mix(in srgb, var(--c) 10%, var(--card)); } .cell.l1 .glyph { opacity: .85; }
+.cell.l2 { background: color-mix(in srgb, var(--c) 20%, var(--card)); } .cell.l2 .glyph { opacity: 1; }
+.cell.l3 { background: color-mix(in srgb, var(--c) 32%, var(--card)); } .cell.l3 .glyph { opacity: 1; }
+.cell.l3::after { content: ''; position: absolute; right: 6px; bottom: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.cell.dim { opacity: .28; } .gap { display: block; }
+.look { display: flex; gap: 10px 18px; flex-wrap: wrap; margin-top: 8px; } .look span { display: inline-flex; gap: 4px; align-items: baseline; font-size: 1.6rem; } .look i { color: var(--muted); font-style: normal; font-size: 1rem; }
+.vlist, .plist { display: flex; flex-direction: column; gap: 6px; }
+.vrow, .pcard { display: flex; gap: 8px; align-items: stretch; }
+.vmain, .pmain { flex: 1; min-width: 0; text-align: left; background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--c-vocab); border-radius: 8px; padding: 8px 12px; display: grid; gap: 2px 14px; }
+.vmain { grid-template-columns: minmax(80px, 1.1fr) minmax(90px, 1fr) 1.4fr; align-items: center; }
+@media (max-width: 560px) { .vmain { grid-template-columns: 1fr 1fr; } .vmean { grid-column: 1 / -1; } }
+.vmain:hover, .pmain:hover { border-color: var(--ink); border-left-color: var(--c-vocab); }
+.pmain { border-left-color: var(--c-phrase); } .pmain:hover { border-left-color: var(--c-phrase); }
+.vjp { font: 700 1.25rem var(--glyph); } .vmid { display: flex; flex-direction: column; line-height: 1.25; } .vrd { font-size: .92rem; } .vro, .pro { font: 400 .75rem var(--f-mono); color: var(--muted); } .vmean, .pen { color: var(--muted); font-size: .9rem; }
+.pjp { font: 700 1.15rem var(--glyph); display: block; }
+.vrow.l1 .vmain, .pcard.l1 .pmain { background: color-mix(in srgb, var(--c-vocab) 9%, var(--card)); }
+.vrow.l2 .vmain { background: color-mix(in srgb, var(--c-vocab) 18%, var(--card)); } .vrow.l3 .vmain { background: color-mix(in srgb, var(--c-vocab) 30%, var(--card)); }
+.pcard.l1 .pmain { background: color-mix(in srgb, var(--c-phrase) 9%, var(--card)); } .pcard.l2 .pmain { background: color-mix(in srgb, var(--c-phrase) 18%, var(--card)); } .pcard.l3 .pmain { background: color-mix(in srgb, var(--c-phrase) 30%, var(--card)); }
+
+/* modal */
+[hidden] { display: none !important; }
+#modal { position: fixed; inset: 0; z-index: 50; background: rgba(8, 12, 24, .62); display: flex; align-items: flex-start; justify-content: center; overflow-y: auto;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.dlg { background: var(--card); border: 1px solid var(--line); border-radius: 12px; width: 100%; max-width: 520px; padding: 22px; position: relative; margin: auto; }
+.dlg .x { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); font-size: 1.4rem; line-height: 1; }
+.big { font-size: clamp(4.5rem, 20vw, 7rem); line-height: 1.1; text-align: center; margin: 6px 0; } .big.two { font-size: clamp(3.5rem, 15vw, 5.5rem); } .big.txt { font: 700 clamp(1.8rem, 7vw, 2.6rem)/1.25 var(--glyph); }
+.rom { font: 700 1.5rem var(--f-disp); text-align: center; margin: 0 0 10px; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; margin: 12px 0; } .kv dt { color: var(--muted); font: 500 .74rem var(--f-mono); text-transform: uppercase; letter-spacing: .06em; padding-top: 3px; } .kv dd { margin: 0; }
+.exl { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.exl li { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; } .exl li b { font: 700 1.1rem var(--glyph); } .exl li span { color: var(--muted); } .exl li i { font-style: normal; color: var(--muted); }
+.pad { position: relative; width: min(100%, 320px); aspect-ratio: 1; margin: 6px auto 10px; border: 2px solid var(--line); border-radius: 8px; background: var(--soft2);
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 50% 50%; background-position: center; }
+.pad canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
+.padg { position: absolute; inset: 0; display: grid; place-items: center; font-size: 15rem; line-height: 1; opacity: .13; pointer-events: none; overflow: hidden; } .padg.two { font-size: 8rem; }
+.pad.hide .padg { display: none; }
+
+/* study */
+.sess { display: flex; flex-direction: column; gap: 14px; max-width: 640px; margin: 0 auto; width: 100%; }
+.sbar { display: flex; align-items: center; gap: 12px; font: 500 .8rem var(--f-mono); }
+.flash { --c: var(--c-hira); position: relative; background: var(--card); border: 1px solid var(--line); border-top: 6px solid var(--c); border-radius: 10px; padding: 22px 18px; text-align: center; min-height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.flash .eyebrow { justify-content: center; } .flash hr { width: 60%; } .flash .rd { font: 700 1.1rem var(--glyph); margin: 0 0 6px; }
+.flash .sp { position: absolute; right: 12px; top: 12px; }
+.grades { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.gbtn { background: var(--card); border: 2px solid var(--line); border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.gbtn b { font-size: .95rem; } .gbtn span { font: 400 .7rem var(--f-mono); color: var(--muted); } .gbtn kbd { margin: 2px 0 0; }
+.gbtn.g0 { border-color: var(--bad); } .gbtn.g1 { border-color: var(--c-hira); } .gbtn.g2 { border-color: var(--c-vocab); } .gbtn.g3 { border-color: var(--c-kata); } .gbtn:hover { background: var(--soft); }
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 520px) { .opts { grid-template-columns: 1fr; } }
+.opt { text-align: left; background: var(--card); border: 2px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 8px; min-height: 52px; min-width: 0; overflow-wrap: anywhere; }
+.opt kbd { margin: 0; } .opt:hover:not(:disabled) { border-color: var(--ink); } .opt .gl { font-size: 1.8rem; line-height: 1.1; }
+.opt.ok { border-color: var(--good); background: var(--good-bg); } .opt.bad { border-color: var(--bad); background: var(--bad-bg); } .opt.off { opacity: .55; } .opt:disabled { cursor: default; }
+.fb { border-radius: 8px; padding: 12px 14px; display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--soft2); border: 1px solid var(--line); }
+.fb.ok { background: var(--good-bg); border-color: var(--good); } .fb.bad { background: var(--bad-bg); border-color: var(--bad); }
+.setup .chips { margin-bottom: 4px; } .setup .btn.lg { margin-top: 14px; }
+.card.done { max-width: 640px; margin: 0 auto; width: 100%; }
+.lessons { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 10px; }
+.lcard { text-align: left; background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--c-vocab); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 2px; }
+.lcard:hover { border-color: var(--ink); border-left-color: var(--c-vocab); } .lcard .ljp { font: 700 1.5rem var(--f-disp); } .lcard .lt { font-weight: 700; } .lcard .ls { font: 500 .72rem var(--f-mono); color: var(--muted); text-transform: uppercase; }
+.lcard.done { background: color-mix(in srgb, var(--c-vocab) 14%, var(--card)); }
+.lesson { max-width: 720px; display: flex; flex-direction: column; gap: 8px; } .prose ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; margin: 8px 0; }
+.ex2 li { display: grid; grid-template-columns: minmax(120px, auto) 1fr auto; gap: 2px 14px; align-items: center; border-bottom: 1px solid var(--line); padding: 6px 0; } .ex2 .jp { font: 700 1.15rem var(--glyph); } .ex2 .r { font: 400 .78rem var(--f-mono); color: var(--muted); grid-column: 2; } .ex2 i { grid-column: 2; }
+.ex2 .ibtn { grid-column: 3; grid-row: 1 / span 3; }
+@media (max-width: 520px) { .ex2 li { grid-template-columns: 1fr auto; } .ex2 .r, .ex2 i { grid-column: 1; } .ex2 .ibtn { grid-column: 2; } }
+.lq { margin-top: 10px; } .lq p { margin-bottom: 6px; }
+
+/* games */
+.gcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.gcard { --c: var(--c-hira); background: var(--card); border: 1px solid var(--line); border-top: 6px solid var(--c); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px; } .gcard p { margin: 0; } .gcard .muted { flex: 1; }
+.gfoot { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.gbar { display: flex; align-items: center; gap: 14px; } .gstage { max-width: 680px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.ghud { display: flex; justify-content: space-between; gap: 8px; font: 500 .8rem var(--f-mono); color: var(--muted); background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; } .ghud b { color: var(--ink); font-size: 1.05rem; }
+.gbig { font-size: clamp(6rem, 28vw, 10rem); text-align: center; line-height: 1.1; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+.gin { font-size: 1.4rem; text-align: center; font-family: var(--f-mono); } .hint { min-height: 1.5em; color: var(--muted); text-align: center; margin: 0; }
+.dstage { position: relative; overflow: hidden; border: 2px solid var(--line); border-radius: 10px; background: linear-gradient(var(--soft2), var(--card)); } .dstage::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--bad); }
+.fall { position: absolute; top: 0; left: 0; font-size: 2.6rem; line-height: 1; padding: 4px 10px; background: var(--card); border: 2px solid var(--c-kata); border-radius: 8px; will-change: transform; } .fall.pop { opacity: 0; transition: opacity .18s; }
+.mgrid { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 8px; }
+.mc { position: relative; aspect-ratio: 1; min-height: 64px; border: 2px solid var(--line); border-radius: 8px; background: var(--ink); color: var(--bg); padding: 2px; display: grid; place-items: center; overflow: hidden; }
+.mc .mf { font: 700 1.6rem var(--f-disp); opacity: .35; } .mc .mb { display: none; font-size: clamp(.8rem, 3.4vw, 1.2rem); line-height: 1.2; text-align: center; overflow-wrap: anywhere; } .mc .mb.glyph { font-size: clamp(1.4rem, 7vw, 2.2rem); }
+.mc.open, .mc.done { background: var(--card); color: var(--ink); } .mc.open .mf, .mc.done .mf { display: none; } .mc.open .mb, .mc.done .mb { display: block; }
+.mc.done { border-color: var(--good); background: var(--good-bg); }
+.ans { min-height: 58px; border: 2px dashed var(--line); border-radius: 8px; padding: 8px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0; } .bank { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; min-height: 48px; }
+.tok { background: var(--card); border: 2px solid var(--line); border-radius: 8px; padding: 8px 14px; font: 700 1.1rem var(--glyph); } .tok.on { border-color: var(--ink); background: var(--soft); } .tok:hover { border-color: var(--ink); }
+.bolt .big { margin: 0; } .bolt { min-height: 230px; display: grid; place-items: center; }
+.ok-b { background: var(--good); border-color: var(--good); color: #fff; } .bad-b { background: var(--bad); border-color: var(--bad); color: #fff; }
+.shake { animation: shake .3s; } @keyframes shake { 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+
+/* today */
+.hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; } .hero > * { min-width: 0; }
+@media (max-width: 760px) { .hero { grid-template-columns: 1fr; } }
+.goal { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; } .gtxt { flex: 1 1 180px; min-width: 0; }
+.ring { width: 132px; height: 132px; flex: none; } .rbg { fill: none; stroke: var(--soft); stroke-width: 9; } .rfg { fill: none; stroke: var(--c-hira); stroke-width: 9; stroke-linecap: round; transition: stroke-dasharray .6s; } .rfg.met { stroke: var(--good); }
+.rt1 { font: 700 26px var(--f-mono); fill: var(--ink); text-anchor: middle; } .rt2 { font: 400 9px var(--f-mono); fill: var(--muted); text-anchor: middle; }
+.go { display: flex; flex-direction: column; gap: 8px; } .go .lab { margin: 0; }
+.missions { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.missions button { width: 100%; display: flex; align-items: center; gap: 10px; background: var(--soft2); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; text-align: left; }
+.missions button:hover { border-color: var(--ink); } .chk { width: 18px; height: 18px; border: 2px solid var(--muted); border-radius: 50%; flex: none; } .mtx { flex: 1; } .mp { font: 500 .78rem var(--f-mono); color: var(--muted); }
+.missions .done .chk { background: var(--good); border-color: var(--good); } .missions .done .mtx { text-decoration: line-through; color: var(--muted); }
+.week { position: relative; display: flex; gap: 8px; align-items: flex-end; height: 130px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.week::before { content: ''; position: absolute; left: 0; right: 0; bottom: calc(20px + (100% - 20px) * var(--goal) / 100); border-top: 1px dashed var(--muted); }
+.wb { flex: 1; height: 100%; position: relative; display: flex; align-items: flex-end; } .wb i { display: block; width: 100%; background: var(--c-hira); border-radius: 4px 4px 0 0; } .wb.met i { background: var(--good); }
+.wb span { position: absolute; bottom: -20px; left: 0; right: 0; text-align: center; font: 400 .66rem var(--f-mono); color: var(--muted); }
+.dexrows { display: flex; flex-direction: column; gap: 6px; }
+.dexrow { --c: var(--c-hira); display: grid; grid-template-columns: 120px 1fr 70px; gap: 12px; align-items: center; background: var(--soft2); border: 1px solid var(--line); border-left: 5px solid var(--c); border-radius: 8px; padding: 9px 12px; text-align: left; } button.dexrow:hover { border-color: var(--ink); border-left-color: var(--c); }
+.dn { display: flex; align-items: center; gap: 8px; font-weight: 700; } .dc { font: 400 .8rem var(--f-mono); color: var(--muted); text-align: right; } .dc b { color: var(--ink); }
+.dexrow.static { cursor: default; } @media (max-width: 480px) { .dexrow { grid-template-columns: 96px 1fr 56px; gap: 8px; } }
+.word .wj { font: 700 clamp(2rem, 8vw, 3rem)/1.2 var(--glyph); margin: 4px 0 2px; } .wr { font: 400 .85rem var(--f-mono); color: var(--muted); margin-bottom: 4px; } .wm { font-size: 1.1rem; }
+
+/* progress */
+.heat { display: grid; grid-template-columns: repeat(14, 1fr); gap: 4px; margin-bottom: 10px; } .heat i { aspect-ratio: 1; border-radius: 3px; background: var(--soft); }
+.heat .a1 { background: color-mix(in srgb, var(--good) 30%, var(--soft)); } .heat .a2 { background: color-mix(in srgb, var(--good) 62%, var(--soft)); } .heat .a3 { background: var(--good); }
+.badges { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
+.badge { border: 1px dashed var(--line); border-radius: 8px; padding: 10px 12px; opacity: .55; display: flex; flex-direction: column; } .badge b { font-size: .92rem; } .badge span { font-size: .78rem; color: var(--muted); }
+.badge.on { opacity: 1; border: 1px solid var(--c-vocab); background: color-mix(in srgb, var(--c-vocab) 12%, var(--card)); }
+.scores li { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 4px; } .scores { list-style: none; padding: 0; }
+
+/* anki */
+.addons { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.addon { background: var(--card); border: 1px solid var(--line); border-top: 6px solid var(--c-kanji); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; } .addon p { margin: 0; }
+.addon.t-essential { border-top-color: var(--c-hira); } .addon.t-recommended { border-top-color: var(--c-kata); } .addon.t-later { border-top-color: var(--c-kanji); }
+.ah { display: flex; justify-content: space-between; align-items: center; gap: 8px; } .tier { font: 500 .65rem var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); border: 1px solid var(--line); border-radius: 99px; padding: 1px 9px; }
+.acode { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; font: 400 .8rem var(--f-mono); } .acode span { color: var(--muted); } .acode b { font-size: .95rem; letter-spacing: .03em; }
+.lnk { color: var(--ink); text-underline-offset: 3px; font-size: .82rem; }
+.decks { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.dk { display: flex; flex-direction: column; gap: 3px; text-decoration: none; background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--c-vocab); border-radius: 8px; padding: 12px 14px; } .dk:hover { border-color: var(--ink); border-left-color: var(--c-vocab); }
+.dk .lvl { font: 500 .68rem var(--f-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--c-vocab); }
+
+/* toast */
+#toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 99px; font-weight: 700; font-size: .9rem; opacity: 0; pointer-events: none; transition: .25s; z-index: 60; max-width: calc(100vw - 32px); text-align: center; }
+#toast.on { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 760px) { #toast { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); } }
+.foot { margin-top: 30px; color: var(--muted); font-size: .8rem; text-align: center; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+</style>
+<div id="app">
+  <header class="top">
+    <a class="brand" href="#today" aria-label="日本に行きたい, home"><span class="mark" aria-hidden="true">日</span><span class="bt"><b>日本に行きたい</b><small>NIHON NI IKITAI</small></span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#today" data-r="today"><span class="k">今日</span><span class="e">Today</span></a>
+      <a href="#dex" data-r="dex"><span class="k">図鑑</span><span class="e">Dex</span></a>
+      <a href="#study" data-r="study"><span class="k">勉強</span><span class="e">Study</span></a>
+      <a href="#games" data-r="games"><span class="k">遊び</span><span class="e">Games</span></a>
+      <a href="#anki" data-r="anki"><span class="k">暗記</span><span class="e">Anki</span></a>
+      <a href="#progress" data-r="progress"><span class="k">記録</span><span class="e">Progress</span></a>
+    </nav>
+    <div id="chips" aria-label="Your streak, level and XP today"></div>
+  </header>
+  <main id="view"></main>
+  <p class="foot">日本に行きたい · Progress is saved on this device and, when available, in your account. Kanji data checked against public JLPT N5 lists.</p>
+</div>
+<div id="modal" hidden></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+/* ============ DATA ============ */
+const toKata = s => s.replace(/[ぁ-ゖ]/g, c => String.fromCharCode(c.charCodeAt(0) + 0x60));
+const toHira = s => s.replace(/[ァ-ヶ]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x60));
+
+/* ---- Kana (rows split by |, cells split by space, _ = gap) ---- */
+const KANA_SPEC = {
+  basic: ['Gojūon', 'The 46 basic sounds', 5,
+    'あ い う え お|か き く け こ|さ し す せ そ|た ち つ て と|な に ぬ ね の|は ひ ふ へ ほ|ま み む め も|や _ ゆ _ よ|ら り る れ ろ|わ _ _ _ を|ん _ _ _ _',
+    'a i u e o|ka ki ku ke ko|sa shi su se so|ta chi tsu te to|na ni nu ne no|ha hi fu he ho|ma mi mu me mo|ya _ yu _ yo|ra ri ru re ro|wa _ _ _ wo|n _ _ _ _'],
+  dakuten: ['Dakuten', 'Voiced sounds, marked with ゛', 5,
+    'が ぎ ぐ げ ご|ざ じ ず ぜ ぞ|だ ぢ づ で ど|ば び ぶ べ ぼ',
+    'ga gi gu ge go|za ji zu ze zo|da ji zu de do|ba bi bu be bo'],
+  handakuten: ['Handakuten', 'The p-sounds, marked with ゜', 5,
+    'ぱ ぴ ぷ ぺ ぽ', 'pa pi pu pe po'],
+  youon: ['Yōon', 'Blended sounds with a small ゃ ゅ ょ', 3,
+    'きゃ きゅ きょ|しゃ しゅ しょ|ちゃ ちゅ ちょ|にゃ にゅ にょ|ひゃ ひゅ ひょ|みゃ みゅ みょ|りゃ りゅ りょ|ぎゃ ぎゅ ぎょ|じゃ じゅ じょ|びゃ びゅ びょ|ぴゃ ぴゅ ぴょ',
+    'kya kyu kyo|sha shu sho|cha chu cho|nya nyu nyo|hya hyu hyo|mya myu myo|rya ryu ryo|gya gyu gyo|ja ju jo|bya byu byo|pya pyu pyo']
+};
+const KATA_EXT = ['Extended', 'Extra sounds for foreign words', 5,
+  'ファ フィ フェ フォ _|ティ ディ _ _ _|ウィ ウェ ウォ _ _|シェ チェ ジェ _ _|ヴ _ _ _ _',
+  'fa fi fe fo _|ti di _ _ _|wi we wo _ _|she che je _ _|vu _ _ _ _'];
+
+const ALT = { shi: ['si'], chi: ['ti'], tsu: ['tu'], fu: ['hu'], ji: ['zi'], wo: ['o'], sha: ['sya'], shu: ['syu'], sho: ['syo'],
+  cha: ['tya', 'cya'], chu: ['tyu', 'cyu'], cho: ['tyo', 'cyo'], ja: ['jya', 'zya'], ju: ['jyu', 'zyu'], jo: ['jyo', 'zyo'], n: ['nn'] };
+function accepted(it) {
+  const a = [it.ro].concat(ALT[it.ro] || []);
+  if ('ぢヂ'.includes(it.ch)) a.push('di');
+  if ('づヅ'.includes(it.ch)) a.push('du');
+  return a;
+}
+
+const KANA = [];            // flat list of every kana item
+const KANA_TABLE = { h: [], k: [] };   // [{key,title,sub,cols,rows:[[item|null]]}]
+(function buildKana() {
+  ['h', 'k'].forEach(type => {
+    let n = 0;
+    const groups = Object.keys(KANA_SPEC).map(k => [k].concat(KANA_SPEC[k]));
+    if (type === 'k') groups.push(['ext'].concat(KATA_EXT));
+    groups.forEach(([key, title, sub, cols, jp, ro]) => {
+      const jr = jp.split('|'), rr = ro.split('|');
+      const rows = jr.map((row, ri) => row.split(' ').map((ch, ci) => {
+        if (ch === '_') return null;
+        n++;
+        const it = { id: type + ':' + (type === 'k' ? toKata(ch) : ch), type, ch: type === 'k' ? toKata(ch) : ch,
+          ro: rr[ri].split(' ')[ci], group: key, n };
+        KANA.push(it);
+        return it;
+      }));
+      KANA_TABLE[type].push({ key, title, sub, cols, rows });
+    });
+  });
+})();
+
+/* romaji from kana reading (hiragana or katakana) */
+const HMAP = {};
+KANA.filter(i => i.type === 'h').forEach(i => { HMAP[i.ch] = i.ro; });
+const RO_FIX = { 'こんにちは': 'konnichiwa', 'こんばんは': 'konbanwa' };
+function romaji(str) {
+  if (RO_FIX[str]) return RO_FIX[str];
+  const s = toHira(str);
+  const look = i => HMAP[s.substr(i, 2)] ? [HMAP[s.substr(i, 2)], 2] : HMAP[s[i]] ? [HMAP[s[i]], 1] : null;
+  let out = '';
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (c === 'っ') { const nx = look(i + 1); if (nx) out += nx[0].startsWith('ch') ? 't' : nx[0][0]; continue; }
+    if (c === 'ー') { out = out.replace(/[aiueo]$/, m => ({ a: 'ā', i: 'ī', u: 'ū', e: 'ē', o: 'ō' })[m]); continue; }
+    const two = look(i);
+    if (two) {
+      let r = two[0];
+      if (c === 'ん') { const nx = look(i + 1); if (nx && /^[aiueoy]/.test(nx[0])) r = "n'"; }
+      out += r; i += two[1] - 1; continue;
+    }
+    out += c;
+  }
+  return out;
+}
+
+/* ---- Kanji ---- */
+const KANJI_CATS = [['numbers', 'Numbers'], ['time', 'Time'], ['nature', 'Nature'], ['people', 'People & school'], ['body', 'Body'],
+  ['direction', 'Direction & size'], ['city', 'City & things'], ['actions', 'Actions'], ['desc', 'Describing']];
+/* Official JLPT N5 kanji set (103), checked against nihongomaster.com's N5 list */
+const N5_KANJI = '日一国会人年大十二本中長出三時行社見月分後前生五間上東四今新金九入立手学高円子目外言八六下来気小七山話多安女北午百書先名川千道水半男西電口少校語空土木聞食車何南足万店毎白古天買週母火花右読友左休父駅雨飲魚耳';
+const KANJI_RAW = `
+一|イチ イツ|ひと(つ)|one|1|numbers|一人 ひとり one person; 一月 いちがつ January
+二|ニ|ふた(つ)|two|2|numbers|二人 ふたり two people; 二月 にがつ February
+三|サン|み(っつ)|three|3|numbers|三月 さんがつ March; 三日 みっか third day
+四|シ|よ よん よっ(つ)|four|5|numbers|四月 しがつ April; 四時 よじ four o'clock
+五|ゴ|いつ(つ)|five|4|numbers|五月 ごがつ May; 五分 ごふん five minutes
+六|ロク|む(っつ)|six|4|numbers|六月 ろくがつ June; 六時 ろくじ six o'clock
+七|シチ|なな なの|seven|2|numbers|七月 しちがつ July; 七日 なのか seventh day
+八|ハチ|や(っつ)|eight|2|numbers|八月 はちがつ August; 八時 はちじ eight o'clock
+九|キュウ ク|ここの(つ)|nine|2|numbers|九月 くがつ September; 九時 くじ nine o'clock
+十|ジュウ|とお|ten|2|numbers|十分 じゅっぷん ten minutes; 十月 じゅうがつ October
+百|ヒャク|-|hundred|6|numbers|三百 さんびゃく 300; 百円 ひゃくえん 100 yen
+千|セン|ち|thousand|3|numbers|三千 さんぜん 3,000; 千円 せんえん 1,000 yen
+万|マン|-|ten thousand|3|numbers|一万円 いちまんえん 10,000 yen
+円|エン|まる(い)|yen, circle|4|numbers|千円 せんえん 1,000 yen; 円 えん yen
+日|ニチ ジツ|ひ か|day, sun|4|time|日曜日 にちようび Sunday; 今日 きょう today
+月|ゲツ ガツ|つき|moon, month|4|time|月曜日 げつようび Monday; 一月 いちがつ January
+年|ネン|とし|year|6|time|今年 ことし this year; 来年 らいねん next year
+時|ジ|とき|time, hour|10|time|時間 じかん time; 三時 さんじ three o'clock
+分|ブン フン|わ(ける)|minute, part|4|time|十分 じゅっぷん ten minutes; 半分 はんぶん half
+半|ハン|なか(ば)|half|5|time|半分 はんぶん half; 三時半 さんじはん half past three
+今|コン|いま|now|4|time|今 いま now; 今日 きょう today
+午|ゴ|うま|noon|4|time|午前 ごぜん morning (AM); 午後 ごご afternoon (PM)
+前|ゼン|まえ|before, front|9|time|午前 ごぜん AM; 名前 なまえ name
+後|ゴ コウ|のち あと うし(ろ)|after, behind|9|time|午後 ごご PM; 後ろ うしろ behind
+間|カン ケン|あいだ ま|interval, between|12|time|時間 じかん time; 間 あいだ between
+毎|マイ|-|every|6|time|毎日 まいにち every day; 毎朝 まいあさ every morning
+週|シュウ|-|week|11|time|今週 こんしゅう this week; 来週 らいしゅう next week
+曜|ヨウ|-|day of the week|18|time|日曜日 にちようび Sunday; 何曜日 なんようび what day?
+火|カ|ひ|fire|4|nature|火曜日 かようび Tuesday; 花火 はなび fireworks
+水|スイ|みず|water|4|nature|水曜日 すいようび Wednesday; 水 みず water
+木|モク ボク|き|tree, wood|4|nature|木曜日 もくようび Thursday; 木 き tree
+金|キン コン|かね|gold, money|8|nature|金曜日 きんようび Friday; お金 おかね money
+土|ド ト|つち|earth, soil|3|nature|土曜日 どようび Saturday; 土 つち soil
+山|サン|やま|mountain|3|nature|富士山 ふじさん Mt. Fuji; 山 やま mountain
+川|セン|かわ|river|3|nature|川 かわ river; 小川 おがわ stream
+田|デン|た|rice field|5|nature|田 た rice field; 田中 たなか Tanaka (surname)
+天|テン|あま あめ|heaven, sky|4|nature|天気 てんき weather; 天ぷら てんぷら tempura
+雨|ウ|あめ|rain|8|nature|雨 あめ rain; 大雨 おおあめ heavy rain
+気|キ ケ|-|spirit, air|6|nature|天気 てんき weather; 元気 げんき healthy
+空|クウ|そら あ(く)|sky, empty|8|nature|空 そら sky; 空港 くうこう airport
+花|カ|はな|flower|7|nature|花 はな flower; 花見 はなみ flower viewing
+石|セキ|いし|stone|5|nature|石 いし stone; 小石 こいし pebble
+林|リン|はやし|woods|8|nature|林 はやし woods; 小林 こばやし Kobayashi (surname)
+森|シン|もり|forest|12|nature|森 もり forest
+海|カイ|うみ|sea|9|nature|海 うみ sea; 日本海 にほんかい Sea of Japan
+犬|ケン|いぬ|dog|4|nature|犬 いぬ dog; 子犬 こいぬ puppy
+魚|ギョ|さかな うお|fish|11|nature|魚 さかな fish; 金魚 きんぎょ goldfish
+人|ジン ニン|ひと|person|2|people|日本人 にほんじん Japanese person; 三人 さんにん three people
+男|ダン ナン|おとこ|man, male|7|people|男の人 おとこのひと man; 男子 だんし boy
+女|ジョ ニョ|おんな|woman, female|3|people|女の人 おんなのひと woman; 彼女 かのじょ she, girlfriend
+子|シ ス|こ|child|3|people|子ども こども child; 女子 じょし girl
+父|フ|ちち|father|4|people|父 ちち my father; お父さん おとうさん father
+母|ボ|はは|mother|5|people|母 はは my mother; お母さん おかあさん mother
+友|ユウ|とも|friend|4|people|友達 ともだち friend; 友人 ゆうじん friend
+先|セン|さき|previous, ahead|6|people|先生 せんせい teacher; 先週 せんしゅう last week
+生|セイ ショウ|い(きる) う(まれる) なま|life, birth, raw|5|people|学生 がくせい student; 生まれる うまれる to be born
+学|ガク|まな(ぶ)|study|8|people|学校 がっこう school; 大学 だいがく university
+校|コウ|-|school|10|people|学校 がっこう school; 高校 こうこう high school
+名|メイ ミョウ|な|name|6|people|名前 なまえ name; 有名 ゆうめい famous
+語|ゴ|かた(る)|language, word|14|people|日本語 にほんご Japanese language; 英語 えいご English
+目|モク|め|eye|5|body|目 め eye; 目薬 めぐすり eye drops
+耳|ジ|みみ|ear|6|body|耳 みみ ear
+口|コウ ク|くち|mouth|3|body|口 くち mouth; 入口 いりぐち entrance
+手|シュ|て|hand|4|body|手 て hand; 上手 じょうず skillful
+足|ソク|あし た(りる)|foot, leg|7|body|足 あし foot, leg; 足りる たりる to be enough
+力|リョク リキ|ちから|power|2|body|力 ちから power; 力持ち ちからもち strong person
+大|ダイ タイ|おお(きい)|big|3|direction|大きい おおきい big; 大学 だいがく university
+小|ショウ|ちい(さい) こ お|small|3|direction|小さい ちいさい small; 小学校 しょうがっこう elementary school
+中|チュウ ジュウ|なか|middle, inside|4|direction|中 なか inside; 中国 ちゅうごく China
+上|ジョウ|うえ あ(がる)|up, above|3|direction|上 うえ above; 上手 じょうず skillful
+下|カ ゲ|した くだ(さい)|down, below|3|direction|下 した below; 地下鉄 ちかてつ subway
+左|サ|ひだり|left|5|direction|左 ひだり left; 左手 ひだりて left hand
+右|ウ ユウ|みぎ|right|5|direction|右 みぎ right; 右手 みぎて right hand
+北|ホク|きた|north|5|direction|北 きた north; 北海道 ほっかいどう Hokkaido
+南|ナン|みなみ|south|9|direction|南 みなみ south; 南口 みなみぐち south exit
+東|トウ|ひがし|east|8|direction|東 ひがし east; 東京 とうきょう Tokyo
+西|セイ サイ|にし|west|6|direction|西 にし west; 西口 にしぐち west exit
+外|ガイ ゲ|そと|outside|5|direction|外 そと outside; 外国 がいこく foreign country
+内|ナイ|うち|inside|4|direction|内 うち inside; 国内 こくない domestic
+国|コク|くに|country|8|city|国 くに country; 外国 がいこく foreign country
+町|チョウ|まち|town|7|city|町 まち town
+駅|エキ|-|station|14|city|駅 えき station; 東京駅 とうきょうえき Tokyo Station
+店|テン|みせ|shop|8|city|店 みせ shop; 喫茶店 きっさてん coffee shop
+道|ドウ|みち|road, way|12|city|道 みち road; 北海道 ほっかいどう Hokkaido
+車|シャ|くるま|car|7|city|車 くるま car; 電車 でんしゃ train
+電|デン|-|electricity|13|city|電車 でんしゃ train; 電話 でんわ telephone
+本|ホン|もと|book, origin|5|city|本 ほん book; 日本 にほん Japan
+社|シャ|やしろ|company, shrine|7|city|会社 かいしゃ company; 神社 じんじゃ shrine
+見|ケン|み(る)|see, look|7|actions|見る みる to see; 花見 はなみ flower viewing
+聞|ブン モン|き(く)|hear, ask|14|actions|聞く きく to listen; 新聞 しんぶん newspaper
+食|ショク|た(べる)|eat|9|actions|食べる たべる to eat; 食事 しょくじ meal
+飲|イン|の(む)|drink|12|actions|飲む のむ to drink; 飲み物 のみもの drink
+行|コウ ギョウ|い(く)|go|6|actions|行く いく to go; 銀行 ぎんこう bank
+来|ライ|く(る)|come|7|actions|来る くる to come; 来週 らいしゅう next week
+帰|キ|かえ(る)|return|10|actions|帰る かえる to return
+出|シュツ|で(る) だ(す)|exit, put out|5|actions|出る でる to exit; 出口 でぐち exit
+入|ニュウ|はい(る) い(れる)|enter|2|actions|入る はいる to enter; 入口 いりぐち entrance
+立|リツ|た(つ)|stand|5|actions|立つ たつ to stand
+休|キュウ|やす(む)|rest|6|actions|休む やすむ to rest; 休日 きゅうじつ day off
+書|ショ|か(く)|write|10|actions|書く かく to write; 辞書 じしょ dictionary
+読|ドク|よ(む)|read|14|actions|読む よむ to read
+話|ワ|はな(す)|talk, story|13|actions|話す はなす to speak; 電話 でんわ telephone
+言|ゲン|い(う)|say|7|actions|言う いう to say; 言語 げんご language
+買|バイ|か(う)|buy|12|actions|買う かう to buy; 買い物 かいもの shopping
+会|カイ|あ(う)|meet|6|actions|会う あう to meet; 会社 かいしゃ company
+作|サク|つく(る)|make|7|actions|作る つくる to make
+使|シ|つか(う)|use|8|actions|使う つかう to use
+思|シ|おも(う)|think|9|actions|思う おもう to think
+長|チョウ|なが(い)|long|8|desc|長い ながい long; 社長 しゃちょう company president
+高|コウ|たか(い)|tall, expensive|10|desc|高い たかい expensive; 高校 こうこう high school
+安|アン|やす(い)|cheap, safe|6|desc|安い やすい cheap; 安全 あんぜん safety
+新|シン|あたら(しい)|new|13|desc|新しい あたらしい new; 新聞 しんぶん newspaper
+古|コ|ふる(い)|old|5|desc|古い ふるい old
+多|タ|おお(い)|many|6|desc|多い おおい many
+少|ショウ|すく(ない) すこ(し)|few, little|4|desc|少ない すくない few; 少し すこし a little
+白|ハク|しろ(い)|white|5|desc|白い しろい white
+赤|セキ|あか(い)|red|7|desc|赤い あかい red
+青|セイ|あお(い)|blue|8|desc|青い あおい blue
+黒|コク|くろ(い)|black|11|desc|黒い くろい black
+好|コウ|す(き)|like|6|desc|好き すき to like
+何|カ|なに なん|what|7|desc|何 なに what; 何時 なんじ what time
+`;
+const KANJI = KANJI_RAW.trim().split('\n').map((ln, i) => {
+  const [ch, on, kun, mean, st, cat, ex] = ln.split('|');
+  const list = s => s.split(' ').filter(x => x && x !== '-');
+  return { id: 'j:' + ch, type: 'j', ch, on: list(on), kun: list(kun), mean, strokes: +st, cat, n: i + 1, n5: N5_KANJI.includes(ch),
+    ex: ex.split(';').map(e => { const t = e.trim().split(' '); return { w: t[0], r: t[1], m: t.slice(2).join(' ') }; }) };
+});
+const KANJI_BY_CH = {}; KANJI.forEach(k => { KANJI_BY_CH[k.ch] = k; });
+
+/* ---- Vocabulary ---- */
+const VOCAB_CATS = [['greetings', 'Greetings'], ['numbers', 'Numbers'], ['time', 'Time'], ['people', 'People'], ['food', 'Food & drink'],
+  ['places', 'Places'], ['travel', 'Transport'], ['verbs', 'Verbs'], ['adj', 'Adjectives'], ['words', 'Question & place words']];
+const VOCAB_RAW = `
+こんにちは|こんにちは|hello, good afternoon|greetings
+おはようございます|おはようございます|good morning|greetings
+こんばんは|こんばんは|good evening|greetings
+さようなら|さようなら|goodbye|greetings
+ありがとうございます|ありがとうございます|thank you very much|greetings
+どういたしまして|どういたしまして|you're welcome|greetings
+すみません|すみません|excuse me, sorry|greetings
+ごめんなさい|ごめんなさい|I'm sorry|greetings
+はい|はい|yes|greetings
+いいえ|いいえ|no|greetings
+お願いします|おねがいします|please (making a request)|greetings
+初めまして|はじめまして|nice to meet you|greetings
+いただきます|いただきます|thanks for the food (before eating)|greetings
+ごちそうさまでした|ごちそうさまでした|thanks for the meal (after eating)|greetings
+おやすみなさい|おやすみなさい|good night|greetings
+行ってきます|いってきます|I'm off (and will be back)|greetings
+ただいま|ただいま|I'm home|greetings
+お帰りなさい|おかえりなさい|welcome home|greetings
+お元気ですか|おげんきですか|how are you?|greetings
+元気です|げんきです|I'm fine|greetings
+分かりません|わかりません|I don't understand|greetings
+零|れい|zero|numbers
+一|いち|one|numbers
+二|に|two|numbers
+三|さん|three|numbers
+四|よん|four|numbers
+五|ご|five|numbers
+六|ろく|six|numbers
+七|なな|seven|numbers
+八|はち|eight|numbers
+九|きゅう|nine|numbers
+十|じゅう|ten|numbers
+百|ひゃく|hundred|numbers
+千|せん|thousand|numbers
+一万|いちまん|ten thousand|numbers
+一つ|ひとつ|one (thing)|numbers
+二つ|ふたつ|two (things)|numbers
+三つ|みっつ|three (things)|numbers
+一人|ひとり|one person|numbers
+二人|ふたり|two people|numbers
+何人|なんにん|how many people?|numbers
+百円|ひゃくえん|100 yen|numbers
+千円|せんえん|1,000 yen|numbers
+今日|きょう|today|time
+明日|あした|tomorrow|time
+昨日|きのう|yesterday|time
+今|いま|now|time
+毎日|まいにち|every day|time
+朝|あさ|morning|time
+昼|ひる|daytime, noon|time
+夜|よる|night|time
+午前|ごぜん|a.m., morning|time
+午後|ごご|p.m., afternoon|time
+時間|じかん|time|time
+今週|こんしゅう|this week|time
+来週|らいしゅう|next week|time
+来年|らいねん|next year|time
+月曜日|げつようび|Monday|time
+火曜日|かようび|Tuesday|time
+水曜日|すいようび|Wednesday|time
+木曜日|もくようび|Thursday|time
+金曜日|きんようび|Friday|time
+土曜日|どようび|Saturday|time
+日曜日|にちようび|Sunday|time
+春|はる|spring|time
+夏|なつ|summer|time
+秋|あき|autumn|time
+冬|ふゆ|winter|time
+私|わたし|I, me|people
+あなた|あなた|you|people
+友達|ともだち|friend|people
+先生|せんせい|teacher|people
+学生|がくせい|student|people
+家族|かぞく|family|people
+父|ちち|my father|people
+母|はは|my mother|people
+子ども|こども|child|people
+男の人|おとこのひと|man|people
+女の人|おんなのひと|woman|people
+日本人|にほんじん|Japanese person|people
+水|みず|water|food
+お茶|おちゃ|tea|food
+ご飯|ごはん|rice, meal|food
+肉|にく|meat|food
+魚|さかな|fish|food
+野菜|やさい|vegetables|food
+果物|くだもの|fruit|food
+パン|パン|bread|food
+卵|たまご|egg|food
+牛乳|ぎゅうにゅう|milk|food
+ラーメン|ラーメン|ramen|food
+寿司|すし|sushi|food
+コーヒー|コーヒー|coffee|food
+ビール|ビール|beer|food
+りんご|りんご|apple|food
+弁当|べんとう|boxed lunch|food
+駅|えき|station|places
+空港|くうこう|airport|places
+学校|がっこう|school|places
+病院|びょういん|hospital|places
+銀行|ぎんこう|bank|places
+郵便局|ゆうびんきょく|post office|places
+ホテル|ホテル|hotel|places
+レストラン|レストラン|restaurant|places
+店|みせ|shop|places
+コンビニ|コンビニ|convenience store|places
+トイレ|トイレ|toilet|places
+神社|じんじゃ|shrine|places
+お寺|おてら|temple|places
+公園|こうえん|park|places
+山|やま|mountain|places
+川|かわ|river|places
+海|うみ|sea|places
+町|まち|town|places
+国|くに|country|places
+日本|にほん|Japan|places
+東京|とうきょう|Tokyo|places
+京都|きょうと|Kyoto|places
+大阪|おおさか|Osaka|places
+電車|でんしゃ|train|travel
+新幹線|しんかんせん|bullet train|travel
+バス|バス|bus|travel
+地下鉄|ちかてつ|subway|travel
+タクシー|タクシー|taxi|travel
+切符|きっぷ|ticket|travel
+飛行機|ひこうき|airplane|travel
+自転車|じてんしゃ|bicycle|travel
+車|くるま|car|travel
+行く|いく|to go|verbs
+来る|くる|to come|verbs
+帰る|かえる|to return home|verbs
+食べる|たべる|to eat|verbs
+飲む|のむ|to drink|verbs
+見る|みる|to see, to watch|verbs
+聞く|きく|to listen, to ask|verbs
+話す|はなす|to speak|verbs
+読む|よむ|to read|verbs
+書く|かく|to write|verbs
+買う|かう|to buy|verbs
+会う|あう|to meet|verbs
+待つ|まつ|to wait|verbs
+休む|やすむ|to rest|verbs
+寝る|ねる|to sleep|verbs
+起きる|おきる|to wake up|verbs
+歩く|あるく|to walk|verbs
+勉強する|べんきょうする|to study|verbs
+分かる|わかる|to understand|verbs
+知る|しる|to know|verbs
+使う|つかう|to use|verbs
+作る|つくる|to make|verbs
+乗る|のる|to ride|verbs
+降りる|おりる|to get off|verbs
+入る|はいる|to enter|verbs
+出る|でる|to exit, to leave|verbs
+教える|おしえる|to teach, to tell|verbs
+住む|すむ|to live (reside)|verbs
+大きい|おおきい|big|adj
+小さい|ちいさい|small|adj
+新しい|あたらしい|new|adj
+古い|ふるい|old (things)|adj
+高い|たかい|expensive, tall|adj
+安い|やすい|cheap|adj
+長い|ながい|long|adj
+多い|おおい|many|adj
+少ない|すくない|few|adj
+近い|ちかい|near|adj
+遠い|とおい|far|adj
+美味しい|おいしい|delicious|adj
+楽しい|たのしい|fun|adj
+忙しい|いそがしい|busy|adj
+暑い|あつい|hot (weather)|adj
+寒い|さむい|cold (weather)|adj
+好き|すき|liked, to like|adj
+きれい|きれい|pretty, clean|adj
+静か|しずか|quiet|adj
+有名|ゆうめい|famous|adj
+白い|しろい|white|adj
+赤い|あかい|red|adj
+青い|あおい|blue|adj
+黒い|くろい|black|adj
+何|なに|what|words
+誰|だれ|who|words
+どこ|どこ|where|words
+いつ|いつ|when|words
+いくら|いくら|how much|words
+どれ|どれ|which one|words
+これ|これ|this (thing)|words
+それ|それ|that (thing)|words
+あれ|あれ|that over there|words
+ここ|ここ|here|words
+そこ|そこ|there|words
+あそこ|あそこ|over there|words
+右|みぎ|right|words
+左|ひだり|left|words
+上|うえ|above|words
+下|した|below|words
+前|まえ|front, before|words
+後ろ|うしろ|behind|words
+中|なか|inside|words
+外|そと|outside|words
+`;
+const VOCAB = VOCAB_RAW.trim().split('\n').map((ln, i) => {
+  const [jp, rd, mean, cat] = ln.split('|');
+  return { id: 'v:' + jp, type: 'v', ch: jp, rd, ro: romaji(rd), mean, cat, n: i + 1 };
+});
+
+/* ---- Travel phrases (romaji written by hand so particles read naturally) ---- */
+const PHRASE_RAW = `
+日本に行きたいです|にほんにいきたいです|Nihon ni ikitai desu|I want to go to Japan|Dreaming
+東京に行きたいです|とうきょうにいきたいです|Tōkyō ni ikitai desu|I want to go to Tokyo|Dreaming
+トイレはどこですか|トイレはどこですか|Toire wa doko desu ka|Where is the toilet?|Getting around
+駅はどこですか|えきはどこですか|Eki wa doko desu ka|Where is the station?|Getting around
+この電車は京都に行きますか|このでんしゃはきょうとにいきますか|Kono densha wa Kyōto ni ikimasu ka|Does this train go to Kyoto?|Getting around
+切符を一枚ください|きっぷをいちまいください|Kippu o ichimai kudasai|One ticket, please|Getting around
+道に迷いました|みちにまよいました|Michi ni mayoimashita|I'm lost|Getting around
+これはいくらですか|これはいくらですか|Kore wa ikura desu ka|How much is this?|Shopping
+これをください|これをください|Kore o kudasai|This one, please|Shopping
+カードは使えますか|カードはつかえますか|Kādo wa tsukaemasu ka|Can I use a card?|Shopping
+水をください|みずをください|Mizu o kudasai|Water, please|Eating out
+メニューをください|メニューをください|Menyū o kudasai|Menu, please|Eating out
+おすすめは何ですか|おすすめはなんですか|Osusume wa nan desu ka|What do you recommend?|Eating out
+お会計をお願いします|おかいけいをおねがいします|Okaikei o onegai shimasu|The bill, please|Eating out
+英語を話せますか|えいごをはなせますか|Eigo o hanasemasu ka|Can you speak English?|Talking
+日本語が少し話せます|にほんごがすこしはなせます|Nihongo ga sukoshi hanasemasu|I can speak a little Japanese|Talking
+もう一度お願いします|もういちどおねがいします|Mō ichido onegai shimasu|One more time, please|Talking
+ゆっくり話してください|ゆっくりはなしてください|Yukkuri hanashite kudasai|Please speak slowly|Talking
+写真を撮ってもいいですか|しゃしんをとってもいいですか|Shashin o totte mo ii desu ka|May I take a photo?|Talking
+助けてください|たすけてください|Tasukete kudasai|Please help me|Emergencies
+`;
+const PHRASES = PHRASE_RAW.trim().split('\n').map((ln, i) => {
+  const [jp, rd, ro, mean, sit] = ln.split('|');
+  return { id: 'p:' + i, type: 'p', ch: jp, rd, ro, mean, sit, n: i + 1 };
+});
+
+/* ---- Sentence builder ---- */
+const SENTENCES = [
+  ['私は|日本に|行きたいです', 'I want to go to Japan'],
+  ['私は|学生です', 'I am a student'],
+  ['これは|いくらですか', 'How much is this?'],
+  ['駅は|どこですか', 'Where is the station?'],
+  ['水を|ください', 'Water, please'],
+  ['私は|毎日|日本語を|勉強します', 'I study Japanese every day'],
+  ['昨日|友達と|寿司を|食べました', 'Yesterday I ate sushi with a friend'],
+  ['明日|京都へ|行きます', 'Tomorrow I will go to Kyoto'],
+  ['電車で|東京に|行きます', 'I go to Tokyo by train'],
+  ['この|ラーメンは|美味しいです', 'This ramen is delicious'],
+  ['英語を|話せますか', 'Can you speak English?'],
+  ['朝|七時に|起きます', 'I get up at seven in the morning'],
+  ['友達と|公園で|遊びました', 'I played in the park with a friend'],
+  ['新しい|カメラを|買いたいです', 'I want to buy a new camera'],
+  ['今日は|とても|暑いです', 'It is very hot today'],
+  ['日曜日に|神社へ|行きました', 'I went to a shrine on Sunday'],
+  ['私は|コーヒーを|飲みます', 'I drink coffee'],
+  ['日本の|電車は|とても|便利です', 'Japanese trains are very convenient']
+];
+
+/* ---- Lessons ---- */
+const LESSONS = [
+  { id: 'l1', jp: '文字と音', title: 'Writing and sounds',
+    body: `<p>Japanese mixes three scripts. <b>Hiragana</b> writes grammar and native words. <b>Katakana</b> writes foreign loanwords, names and emphasis, like コーヒー (coffee). <b>Kanji</b> carry meaning and come from Chinese. <b>Romaji</b> is just Latin letters for learners.</p>
+      <ul><li>Each kana is one beat: a vowel (a i u e o) or consonant plus vowel. ん is a lone n.</li>
+      <li>A dakuten ゛ voices a consonant (か → が). A handakuten ゜ turns は into ぱ.</li>
+      <li>A small っ doubles the next consonant with a short pause. A small ゃ ゅ ょ blends into the kana before it (き + ゃ = きゃ, kya).</li>
+      <li>Long vowels last two beats: おばさん (aunt) versus おばあさん (grandmother). Katakana marks them with ー.</li></ul>`,
+    ex: [['きって', 'kitte', 'stamp'], ['おばさん', 'obasan', 'aunt'], ['おばあさん', 'obāsan', 'grandmother']],
+    quiz: [{ q: 'Which script is normally used for loanwords such as コーヒー?', o: ['Hiragana', 'Katakana', 'Kanji'], a: 1 },
+      { q: 'What does the small っ do?', o: ['Makes a vowel long', 'Doubles the next consonant', 'Adds a y sound'], a: 1 }] },
+  { id: 'l2', jp: 'です', title: 'Basic sentences with です',
+    body: `<p>The basic pattern is <b>A は B です</b>, meaning "A is B". The particle は is pronounced <b>wa</b>. です makes the sentence polite.</p>
+      <ul><li>Negative: じゃありません (or ではありません). Past: でした.</li>
+      <li>Add <b>か</b> at the end to ask a question. No question mark is needed.</li>
+      <li>Japanese often drops the subject when it is obvious.</li></ul>`,
+    ex: [['私は学生です', 'Watashi wa gakusei desu', 'I am a student'], ['田中さんは先生ではありません', 'Tanaka-san wa sensei dewa arimasen', 'Mr. Tanaka is not a teacher'], ['これは水ですか', 'Kore wa mizu desu ka', 'Is this water?']],
+    quiz: [{ q: 'How is は pronounced in 私は学生です?', o: ['ha', 'wa', 'o'], a: 1 },
+      { q: 'How do you turn a statement into a polite question?', o: ['Add か at the end', 'Add を at the end', 'Swap the word order'], a: 0 }] },
+  { id: 'l3', jp: '助詞', title: 'Essential particles',
+    body: `<p>Particles are small words that mark the role of the word before them.</p>
+      <ul><li><b>は</b> topic ("as for…"), <b>が</b> subject, <b>を</b> object of a verb.</li>
+      <li><b>に</b> target, time, or where something exists. <b>へ</b> direction (read "e").</li>
+      <li><b>で</b> place of an action, or means ("by train"). <b>の</b> possession ("of").</li>
+      <li><b>と</b> "and" or "with". <b>も</b> "also". <b>から</b> from. <b>まで</b> until.</li></ul>`,
+    ex: [['水を飲みます', 'Mizu o nomimasu', 'I drink water'], ['東京に行きます', 'Tōkyō ni ikimasu', 'I go to Tokyo'], ['電車で行きます', 'Densha de ikimasu', 'I go by train'], ['友達と食べます', 'Tomodachi to tabemasu', 'I eat with a friend'], ['これは私の本です', 'Kore wa watashi no hon desu', 'This is my book']],
+    quiz: [{ q: 'Which particle marks the object of a verb?', o: ['を', 'で', 'の'], a: 0 },
+      { q: '友達___行きます. Choose the particle for "go with a friend".', o: ['と', 'を', 'も'], a: 0 }] },
+  { id: 'l4', jp: '動詞', title: 'Verbs in ます form',
+    body: `<p>Dictionary form ends in a u-sound (食べる, 飲む, 行く). The polite form ends in <b>ます</b>.</p>
+      <ul><li>Present 食べます, negative 食べません, past 食べました, past negative 食べませんでした.</li>
+      <li>る-verbs drop る (食べる → 食べます). う-verbs change the last u to i (飲む → 飲みます).</li>
+      <li>Two irregular verbs: する → します, 来る → 来ます (きます).</li></ul>`,
+    ex: [['食べます', 'tabemasu', 'I eat'], ['飲みません', 'nomimasen', 'I do not drink'], ['行きました', 'ikimashita', 'I went'], ['勉強しませんでした', 'benkyō shimasen deshita', 'I did not study']],
+    quiz: [{ q: 'What is the polite past form of 行く?', o: ['行きます', '行きました', '行きません'], a: 1 },
+      { q: 'What is the polite form of する?', o: ['します', 'すます', 'しります'], a: 0 }] },
+  { id: 'l5', jp: '形容詞', title: 'Adjectives',
+    body: `<p>There are two kinds. <b>い-adjectives</b> end in い (高い). <b>な-adjectives</b> are nouns that take な before another noun (静か).</p>
+      <ul><li>い-adjective: 高い (tall), 高くない (not tall), 高かった (was tall). The odd one is いい: よくない, よかった.</li>
+      <li>な-adjective: 静かです, 静かじゃない. Before a noun: 静かな町.</li>
+      <li>い-adjectives sit directly before nouns: 高い山.</li></ul>`,
+    ex: [['高い山', 'takai yama', 'a tall mountain'], ['静かな町', 'shizuka na machi', 'a quiet town'], ['このラーメンは美味しくないです', 'Kono rāmen wa oishikunai desu', "This ramen isn't tasty"]],
+    quiz: [{ q: 'What is the negative of 安い?', o: ['安くない', '安いない', '安じゃない'], a: 0 },
+      { q: '静か___町. Which ending fits before the noun?', o: ['い', 'な', 'の'], a: 1 }] },
+  { id: 'l6', jp: '数え方', title: 'Numbers and counting',
+    body: `<p>1 to 10: いち、に、さん、し/よん、ご、ろく、しち/なな、はち、きゅう、じゅう. Then 百 ひゃく, 千 せん, 万 まん (10,000).</p>
+      <ul><li>Sound changes: 300 さんびゃく, 600 ろっぴゃく, 800 はっぴゃく, 3,000 さんぜん, 8,000 はっせん.</li>
+      <li>Things: ひとつ、ふたつ、みっつ、よっつ、いつつ、むっつ、ななつ、やっつ、ここのつ、とお.</li>
+      <li>People: ひとり、ふたり, then さんにん、よにん. Money: 円 (えん).</li></ul>`,
+    ex: [['三百円', 'sanbyaku en', '300 yen'], ['二人', 'futari', 'two people'], ['千五百円', 'sen gohyaku en', '1,500 yen']],
+    quiz: [{ q: 'How do you say "two people"?', o: ['ににん', 'ふたり', 'ふたつ'], a: 1 },
+      { q: 'How do you read 300?', o: ['さんひゃく', 'さんびゃく', 'さんぴゃく'], a: 1 }] },
+  { id: 'l7', jp: '時間', title: 'Telling time and days',
+    body: `<p>Hours use <b>〜時 (じ)</b>: 一時 いちじ, 二時 にじ, 三時 さんじ, <b>四時 よじ</b>, 七時 しちじ, <b>九時 くじ</b>. Minutes use ふん or ぷん: 一分 いっぷん, 二分 にふん, 三分 さんぷん, 五分 ごふん, 十分 じゅっぷん. 半 (はん) means half past.</p>
+      <ul><li>午前 is a.m. and 午後 is p.m.</li>
+      <li>Weekdays: 月 げつ, 火 か, 水 すい, 木 もく, 金 きん, 土 ど, 日 にち, each followed by ようび.</li></ul>`,
+    ex: [['三時半', 'sanji han', '3:30'], ['午後五時', 'gogo goji', '5 p.m.'], ['火曜日', 'kayōbi', 'Tuesday']],
+    quiz: [{ q: 'How do you say "4 o\'clock"?', o: ['よんじ', 'よじ', 'しじ'], a: 1 },
+      { q: 'Which day is かようび?', o: ['Tuesday', 'Thursday', 'Friday'], a: 0 }] },
+  { id: 'l8', jp: '〜たい', title: 'Wants and requests',
+    body: `<p>Say what you want with the verb stem plus <b>たい</b>. Ask for things with <b>をください</b>.</p>
+      <ul><li>行きます → 行きたい (want to go). Negative: 行きたくない.</li>
+      <li>Request: て-form + ください (見てください, please look).</li>
+      <li>Permission: て-form + もいいですか (撮ってもいいですか, may I take it?).</li></ul>`,
+    ex: [['日本に行きたいです', 'Nihon ni ikitai desu', 'I want to go to Japan'], ['寿司が食べたいです', 'Sushi ga tabetai desu', 'I want to eat sushi'], ['ゆっくり話してください', 'Yukkuri hanashite kudasai', 'Please speak slowly']],
+    quiz: [{ q: 'How do you say "I want to drink"?', o: ['飲みたいです', '飲みますたい', '飲むください'], a: 0 },
+      { q: 'How do you ask for water politely?', o: ['水をください', '水はです', '水がます'], a: 0 }] },
+  { id: 'l9', jp: 'こそあど', title: 'Questions and this/that',
+    body: `<p>The <b>こそあど</b> words come in sets: こ (near me), そ (near you), あ (far from both), ど (which?).</p>
+      <ul><li>Things: これ、それ、あれ、どれ. Places: ここ、そこ、あそこ、どこ. Before a noun: この、その、あの、どの.</li>
+      <li>Question words: 何 (なに/なん) what, 誰 (だれ) who, いつ when, どこ where, いくら how much.</li>
+      <li>End questions with か.</li></ul>`,
+    ex: [['これは何ですか', 'Kore wa nan desu ka', 'What is this?'], ['トイレはどこですか', 'Toire wa doko desu ka', 'Where is the toilet?'], ['あの人は誰ですか', 'Ano hito wa dare desu ka', 'Who is that person?']],
+    quiz: [{ q: 'Which word means "that over there" (a thing)?', o: ['これ', 'それ', 'あれ'], a: 2 },
+      { q: 'Which question word asks "how much"?', o: ['いくら', 'いつ', 'だれ'], a: 0 }] }
+];
+
+/* ---- Registry ---- */
+const ALL = KANA.concat(KANJI, VOCAB, PHRASES);
+const ITEMS = {}; ALL.forEach(i => { ITEMS[i.id] = i; });
+const DECKS = {
+  hira: { label: 'Hiragana', short: 'Hira', color: '--c-hira', items: KANA.filter(i => i.type === 'h') },
+  kata: { label: 'Katakana', short: 'Kata', color: '--c-kata', items: KANA.filter(i => i.type === 'k') },
+  kanji: { label: 'Kanji', short: 'Kanji', color: '--c-kanji', items: KANJI },
+  vocab: { label: 'Vocabulary', short: 'Vocab', color: '--c-vocab', items: VOCAB },
+  phrase: { label: 'Phrases', short: 'Phrases', color: '--c-phrase', items: PHRASES }
+};
+const DECK_ORDER = ['hira', 'kata', 'kanji', 'vocab', 'phrase'];
+
+/* ============ CORE ============ */
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const pad2 = n => String(n).padStart(2, '0');
+const rnd = n => Math.floor(Math.random() * n);
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = rnd(i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const sample = (a, n) => shuffle(a).slice(0, n);
+const dayKey = d => { d = d || new Date(); return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); };
+
+/* ---- state ---- */
+const KEY = 'nihon-ni-ikitai.v1';
+const DEF = () => ({ saved: 0, xp: 0, items: {}, days: {}, best: {}, ach: {}, lessons: {}, games: 0, perfect: 0, tot: { ok: 0, all: 0 },
+  set: { goal: 30, romaji: true, sound: true, speak: true, font: 'klee', theme: 'system' } });
+let S = DEF();
+function loadState() {
+  try {
+    const o = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (o && typeof o === 'object') { S = Object.assign(DEF(), o); S.set = Object.assign(DEF().set, o.set || {}); S.tot = Object.assign(DEF().tot, o.tot || {}); }
+  } catch (e) { /* storage unavailable: run in memory */ }
+}
+let saveT;
+function save() { S.saved = Date.now(); if (typeof cloudDirty === 'function') cloudDirty(); clearTimeout(saveT); saveT = setTimeout(() => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }, 200); }
+
+const UI = { dex: 'hira', dexFilter: 'all', dexQ: '', dexCat: 'all', vocCat: 'all', study: 'cards', lesson: null,
+  cfg: { deck: 'hira', mode: 'mix', size: 10, dir: 'mixed' }, quiz: { deck: 'hira', dir: 'mixed', size: 10 },
+  game: { deck: 'h', scope: 'basic', pairs: 8 } };
+
+/* ---- item state & spaced repetition ---- */
+const DAY = 864e5, GAP = [0, 1, 3, 7, 14, 30];
+const peek = id => S.items[id] || { b: 0, due: 0, c: 0, w: 0, s: 0 };
+const ref = id => S.items[id] || (S.items[id] = { b: 0, due: 0, c: 0, w: 0, s: 0 });
+const lvl = id => { const x = peek(id); return x.b >= 5 ? 3 : x.b >= 3 ? 2 : (x.b >= 1 || x.s > 0) ? 1 : 0; };
+const LVL_NAME = ['New', 'Learning', 'Familiar', 'Mastered'];
+
+function today() { const k = dayKey(); return S.days[k] || (S.days[k] = { xp: 0, rev: 0, learn: 0, games: 0, ok: 0, all: 0, met: false }); }
+function tally(ok) { S.tot.all++; const d = today(); d.all++; if (ok) { S.tot.ok++; d.ok++; } }
+function addXP(n) {
+  if (!n) return;
+  const d = today(); d.xp += n; S.xp += n;
+  if (!d.met && d.xp >= S.set.goal) { d.met = true; toast('Daily goal reached'); sfx.win(); }
+  checkAch(); refreshChips(); save();
+}
+/* g: 0 again, 1 hard, 2 good, 3 easy. Returns true when the item was new. */
+function grade(id, g) {
+  const x = ref(id), now = Date.now(), first = x.s === 0;
+  x.s++;
+  if (g === 0) { x.w++; x.b = Math.max(0, x.b - 1); x.due = now + 10 * 60e3; tally(false); }
+  else {
+    x.c++;
+    if (g === 1) { x.b = Math.max(1, x.b); x.due = now + Math.max(36e5, GAP[x.b] * DAY * 0.5); }
+    else { x.b = Math.min(5, x.b + (g === 3 ? 2 : 1)); x.due = now + GAP[x.b] * DAY; }
+    tally(true);
+  }
+  const d = today(); if (first) d.learn++; else d.rev++;
+  addXP(g + (first && g > 0 ? 1 : 0));
+  return first;
+}
+/* lighter update used by quizzes and games */
+function touch(id, ok) {
+  const x = ref(id), now = Date.now(), first = x.s === 0;
+  x.s++;
+  if (ok) { x.c++; if (x.b === 0) { x.b = 1; x.due = now + DAY; } else if (x.due <= now) { x.b = Math.min(5, x.b + 1); x.due = now + GAP[x.b] * DAY; } }
+  else { x.w++; if (x.b > 1) x.b--; x.due = now + 10 * 60e3; }
+  tally(ok); if (first) today().learn++;
+  save();
+}
+function markKnown(id) { const x = ref(id); x.b = 5; x.s = Math.max(1, x.s); x.due = Date.now() + 30 * DAY; save(); checkAch(); }
+function resetItem(id) { delete S.items[id]; save(); }
+
+const poolOf = deck => (deck && deck !== 'all') ? DECKS[deck].items : ALL;
+const dueList = deck => poolOf(deck).filter(i => { const x = S.items[i.id]; return x && x.s > 0 && x.due <= Date.now(); }).sort((a, b) => S.items[a.id].due - S.items[b.id].due);
+const newList = deck => poolOf(deck).filter(i => { const x = S.items[i.id]; return !x || (x.s === 0 && x.b === 0); });
+const deckStat = key => { const r = [0, 0, 0, 0]; DECKS[key].items.forEach(i => r[lvl(i.id)]++); return r; };
+const cnt = (deck, min) => DECKS[deck].items.filter(i => lvl(i.id) >= min).length;
+
+function levelInfo() { const l = Math.floor(Math.sqrt(S.xp / 30)) + 1, lo = 30 * (l - 1) * (l - 1), hi = 30 * l * l; return { l, lo, hi, p: (S.xp - lo) / (hi - lo) }; }
+function streak() {
+  let n = 0; const d = new Date();
+  if (!(S.days[dayKey(d)] || {}).met) d.setDate(d.getDate() - 1);
+  while ((S.days[dayKey(d)] || {}).met) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+}
+
+/* ---- badges ---- */
+const ACH = [
+  ['first', 'First steps', 'Answer your first question', () => S.tot.all >= 1],
+  ['h10', 'Hiragana starter', 'Learn 10 hiragana', () => cnt('hira', 1) >= 10],
+  ['hall', 'Hiragana master', 'Master all 46 basic hiragana', () => KANA.filter(i => i.type === 'h' && i.group === 'basic').every(i => lvl(i.id) >= 3)],
+  ['kall', 'Katakana master', 'Master all 46 basic katakana', () => KANA.filter(i => i.type === 'k' && i.group === 'basic').every(i => lvl(i.id) >= 3)],
+  ['kj25', 'Kanji explorer', 'Learn 25 kanji', () => cnt('kanji', 1) >= 25],
+  ['kj60', 'Kanji traveller', 'Learn 60 kanji', () => cnt('kanji', 1) >= 60],
+  ['v50', 'Word collector', 'Learn 50 words', () => cnt('vocab', 1) >= 50],
+  ['ph', 'Travel ready', 'Learn all 20 travel phrases', () => cnt('phrase', 1) >= 20],
+  ['s3', 'Three in a row', 'Reach a 3 day streak', () => streak() >= 3],
+  ['s7', 'Full week', 'Reach a 7 day streak', () => streak() >= 7],
+  ['s30', 'Habit formed', 'Reach a 30 day streak', () => streak() >= 30],
+  ['xp500', '500 XP', 'Earn 500 XP in total', () => S.xp >= 500],
+  ['xp2000', '2000 XP', 'Earn 2000 XP in total', () => S.xp >= 2000],
+  ['g5', 'Arcade regular', 'Finish 5 minigames', () => S.games >= 5],
+  ['perf', 'Flawless', 'Score 100% on a quiz', () => S.perfect >= 1],
+  ['les5', 'Grammar student', 'Finish 5 lessons', () => Object.keys(S.lessons).length >= 5],
+  ['lv5', 'Level 5', 'Reach level 5', () => levelInfo().l >= 5],
+  ['m100', 'Hundred club', 'Master 100 items', () => ALL.filter(i => lvl(i.id) === 3).length >= 100]
+];
+let achBusy = false;
+function checkAch() {
+  if (achBusy) return; achBusy = true;
+  ACH.forEach(a => { if (!S.ach[a[0]] && a[3]()) { S.ach[a[0]] = Date.now(); toast('Badge unlocked: ' + a[1]); } });
+  achBusy = false;
+}
+
+/* ---- feedback: toast, sound, speech ---- */
+let toastT;
+function toast(msg) { const t = $('#toast'); if (!t) return; t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2300); }
+let AC;
+function beep(f, d, type, v) {
+  if (!S.set.sound) return;
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    const o = AC.createOscillator(), g = AC.createGain();
+    o.type = type || 'sine'; o.frequency.value = f; g.gain.value = v || 0.05;
+    o.connect(g); g.connect(AC.destination); o.start();
+    g.gain.exponentialRampToValueAtTime(0.0001, AC.currentTime + d); o.stop(AC.currentTime + d);
+  } catch (e) {}
+}
+const sfx = {
+  ok: () => { beep(660, 0.09); setTimeout(() => beep(880, 0.12), 80); },
+  no: () => beep(170, 0.2, 'square', 0.03),
+  win: () => { [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => beep(f, 0.14), i * 110)); },
+  tick: () => beep(500, 0.04)
+};
+function speakText(it) {
+  return it.type === 'j' ? it.ex[0].w : it.type === 'v' ? it.rd : it.ch;
+}
+function speak(text) {
+  if (!S.set.speak) { toast('Speech is switched off in Progress'); return; }
+  try {
+    const u = new SpeechSynthesisUtterance(text); u.lang = 'ja-JP'; u.rate = 0.85;
+    const v = speechSynthesis.getVoices().find(x => x.lang && x.lang.toLowerCase().indexOf('ja') === 0);
+    if (v) u.voice = v;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  } catch (e) { toast('Speech is not available in this browser'); }
+}
+
+/* ---- item display helpers ---- */
+const answerOf = it => (it.type === 'h' || it.type === 'k') ? it.ro : it.mean;
+const codeOf = it => it.type === 'h' ? 'H' + pad2(it.n) : it.type === 'k' ? 'K' + pad2(it.n) : it.type === 'j' ? 'J' + String(it.n).padStart(3, '0') : it.type === 'v' ? 'V' + String(it.n).padStart(3, '0') : 'P' + pad2(it.n);
+const colorOf = it => ({ h: '--c-hira', k: '--c-kata', j: '--c-kanji', v: '--c-vocab', p: '--c-phrase' })[it.type];
+const TYPE_NAME = { h: 'Hiragana', k: 'Katakana', j: 'Kanji', v: 'Word', p: 'Phrase' };
+const kanjiRead = k => k.on.concat(k.kun).join('、');
+const isKana = it => it.type === 'h' || it.type === 'k';
+
+/* ---- generic UI helpers ---- */
+const chipRow = (opts, cur, key) => '<div class="chips" role="group">' + opts.map(o =>
+  `<button class="chip${String(o[0]) === String(cur) ? ' on' : ''}" data-act="ui" data-k="${key}" data-v="${esc(o[0])}" aria-pressed="${String(o[0]) === String(cur)}">${esc(o[1])}</button>`).join('') + '</div>';
+const segBar = key => {
+  const s = deckStat(key), n = DECKS[key].items.length;
+  return `<div class="seg" style="--c:var(${DECKS[key].color})" title="${s[3]} mastered, ${s[2]} familiar, ${s[1]} learning, ${s[0]} new">` +
+    [3, 2, 1].map(l => `<i class="s${l}" style="width:${(s[l] / n * 100).toFixed(2)}%"></i>`).join('') + '</div>';
+};
+const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+
+const ACT = {};
+const SPEAK_SVG = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
+/* ---- modal ---- */
+function openModal(html, cls) {
+  const m = $('#modal');
+  m.innerHTML = `<div class="dlg ${cls || ''}" role="dialog" aria-modal="true">${html}</div>`;
+  m.hidden = false; document.body.classList.add('noscroll');
+  const c = $('.dlg .x', m); if (c) c.focus();
+}
+function closeModal() { const m = $('#modal'); if (!m) return; m.hidden = true; m.innerHTML = ''; document.body.classList.remove('noscroll'); }
+
+/* ---- routing ---- */
+const ROUTES = ['today', 'dex', 'study', 'games', 'anki', 'progress'];
+const route = () => { const h = location.hash.slice(1); return ROUTES.indexOf(h) >= 0 ? h : 'today'; };
+function go(r) { if (location.hash === '#' + r) render(); else location.hash = r; }
+
+function refreshChips() {
+  const el = $('#chips'); if (!el) return;
+  const li = levelInfo(), d = today();
+  el.innerHTML = `<span class="stat"><b>${streak()}</b> day streak</span><span class="stat">Lv <b>${li.l}</b></span><span class="stat"><b>${d.xp}</b>/${S.set.goal} XP</span>`;
+}
+function applyPrefs() {
+  const r = document.documentElement;
+  if (S.set.theme === 'system') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.set.theme);
+  r.setAttribute('data-font', S.set.font);
+}
+
+/* ============ DEX ============ */
+const DEX_TABS = [['hira', 'Hiragana'], ['kata', 'Katakana'], ['kanji', 'Kanji'], ['vocab', 'Vocabulary'], ['phrase', 'Phrases']];
+const tabBar = (tabs, cur, key) => '<div class="tabs" role="tablist">' + tabs.map(t =>
+  `<button class="tab${t[0] === cur ? ' on' : ''}" role="tab" aria-selected="${t[0] === cur}" data-act="ui" data-k="${key}" data-v="${t[0]}"${DECKS[t[0]] ? ` style="--c:var(${DECKS[t[0]].color})"` : ''}>${esc(t[1])}</button>`).join('') + '</div>';
+
+const passFilter = it => { const L = lvl(it.id), f = UI.dexFilter; return f === 'all' || (f === 'new' && L === 0) || (f === 'learning' && (L === 1 || L === 2)) || (f === 'mastered' && L === 3); };
+
+function viewDex() {
+  return `<section class="page">
+    <header class="ph"><p class="eyebrow">図鑑 · Dex</p><h1>Every character, one entry each</h1>
+    <p class="sub">Open an entry to hear it, see examples and practise writing it. Entries fill with colour as you learn them.</p></header>
+    ${tabBar(DEX_TABS, UI.dex, 'dex')}
+    <div id="dexbody">${dexBody()}</div></section>`;
+}
+function dexBody() {
+  const k = UI.dex, d = DECKS[k], s = deckStat(k), n = d.items.length;
+  const kana = k === 'hira' || k === 'kata';
+  let h = `<div class="deckbar" style="--c:var(${d.color})"><div class="deckinfo"><div><b>${s[3]}</b> of ${n} mastered <span class="muted">· ${s[1] + s[2]} in progress · ${s[0]} new</span></div>${segBar(k)}</div>
+    <div class="row">
+      <button class="btn" data-act="studyDeck" data-v="${k}">Study these</button>
+      <button class="btn ghost" data-act="quizDeck" data-v="${k}">Quiz</button>
+      ${kana ? `<button class="btn ghost" data-act="rushDeck" data-v="${k}">Typing game</button>` : ''}
+    </div></div>
+    <div class="toolbar">
+      ${chipRow([['all', 'All'], ['new', 'New'], ['learning', 'In progress'], ['mastered', 'Mastered']], UI.dexFilter, 'dexFilter')}
+      ${kana ? `<button class="chip${S.set.romaji ? ' on' : ''}" data-act="toggleRomaji" aria-pressed="${S.set.romaji}">Show romaji</button>`
+        : `<label class="search"><span class="vh">Search</span><input id="dexq" data-input="dexq" type="search" placeholder="Search meaning, reading or character" value="${esc(UI.dexQ)}" autocomplete="off"></label>`}
+    </div>`;
+  if (k === 'kanji') h += chipRow([['all', 'All themes']].concat(KANJI_CATS), UI.dexCat, 'dexCat');
+  if (k === 'vocab') h += chipRow([['all', 'All']].concat(VOCAB_CATS), UI.vocCat, 'vocCat');
+  return h + `<div id="dexlist">${dexList()}</div>`;
+}
+const cellHTML = it => {
+  const L = lvl(it.id), kana = isKana(it);
+  return `<button class="cell l${L}${passFilter(it) ? '' : ' dim'}${kana ? '' : ' kj'}" data-act="detail" data-id="${esc(it.id)}" style="--c:var(${colorOf(it)})" aria-label="${esc(it.ch)} ${esc(answerOf(it))}, ${LVL_NAME[L]}">
+    <span class="code">${codeOf(it)}</span><span class="glyph">${esc(it.ch)}</span>
+    <span class="cap">${kana ? (S.set.romaji ? esc(it.ro) : '&nbsp;') : esc(it.mean)}</span>${it.n5 ? '<span class="n5">N5</span>' : ''}</button>`;
+};
+function dexList() {
+  const k = UI.dex, q = UI.dexQ.trim().toLowerCase();
+  if (k === 'hira' || k === 'kata') {
+    const type = k === 'hira' ? 'h' : 'k';
+    let h = KANA_TABLE[type].map(g => `<div class="kgroup"><div class="kh"><h3>${g.title}</h3><span>${g.sub}</span></div>
+      <div class="kgrid" style="--cols:${g.cols}">${g.rows.map(r => r.map(it => it ? cellHTML(it) : '<span class="gap"></span>').join('')).join('')}</div></div>`).join('');
+    const pairs = type === 'h' ? [['ぬ', 'め'], ['わ', 'れ', 'ね'], ['は', 'ほ'], ['る', 'ろ'], ['さ', 'き'], ['い', 'り'], ['あ', 'お']]
+      : [['シ', 'ツ'], ['ソ', 'ン'], ['ノ', 'メ'], ['ヌ', 'ス'], ['ウ', 'ワ'], ['ク', 'ケ'], ['コ', 'ユ']];
+    return h + `<div class="card tip"><h3>Easy to mix up</h3><p class="muted">These sets look alike. Check the stroke direction and the angle before you answer.</p>
+      <div class="look">${pairs.map(p => `<span>${p.map(c => `<b class="glyph">${c}</b>`).join('<i>/</i>')}</span>`).join('')}</div></div>`;
+  }
+  if (k === 'kanji') {
+    const list = KANJI.filter(j => (UI.dexCat === 'all' || j.cat === UI.dexCat) && passFilter(j) &&
+      (!q || j.ch.includes(q) || j.mean.toLowerCase().includes(q) || kanjiRead(j).includes(q) || j.ex.some(e => e.w.includes(q) || e.r.includes(q) || e.m.toLowerCase().includes(q))));
+    if (!list.length) return '<p class="empty">No kanji match. Clear the search or the filter.</p>';
+    return KANJI_CATS.filter(c => list.some(j => j.cat === c[0])).map(c => `<div class="kgroup"><div class="kh"><h3>${c[1]}</h3><span>${list.filter(j => j.cat === c[0]).length} kanji</span></div>
+      <div class="kgrid kj" style="--cols:5">${list.filter(j => j.cat === c[0]).map(cellHTML).join('')}</div></div>`).join('') +
+      `<p class="muted small">N5 marks the official JLPT N5 kanji. All 103 are included. The other ${KANJI.filter(j => !j.n5).length} are common extras. Meanings and readings checked against online kanji lists.</p>`;
+  }
+  if (k === 'vocab') {
+    const list = VOCAB.filter(v => (UI.vocCat === 'all' || v.cat === UI.vocCat) && passFilter(v) &&
+      (!q || v.ch.includes(q) || v.rd.includes(q) || v.ro.includes(q) || v.mean.toLowerCase().includes(q)));
+    if (!list.length) return '<p class="empty">No words match. Clear the search or the filter.</p>';
+    return `<div class="vlist">${list.map(v => `<div class="vrow l${lvl(v.id)}"><button class="vmain" data-act="detail" data-id="${esc(v.id)}">
+      <span class="vjp">${esc(v.ch)}</span><span class="vmid"><span class="vrd">${esc(v.rd)}</span><span class="vro">${esc(v.ro)}</span></span><span class="vmean">${esc(v.mean)}</span></button>
+      <button class="ibtn" data-act="say" data-id="${esc(v.id)}" aria-label="Listen to ${esc(v.rd)}">${SPEAK_SVG}</button></div>`).join('')}</div>`;
+  }
+  const sits = Array.from(new Set(PHRASES.map(p => p.sit)));
+  const list = PHRASES.filter(p => passFilter(p) && (!q || p.ch.includes(q) || p.ro.toLowerCase().includes(q) || p.mean.toLowerCase().includes(q)));
+  if (!list.length) return '<p class="empty">No phrases match.</p>';
+  return sits.filter(s => list.some(p => p.sit === s)).map(s => `<div class="kgroup"><div class="kh"><h3>${s}</h3></div><div class="plist">${list.filter(p => p.sit === s).map(p => `
+    <div class="pcard l${lvl(p.id)}"><button class="pmain" data-act="detail" data-id="${p.id}"><span class="pjp">${esc(p.ch)}</span><span class="pro">${esc(p.ro)}</span><span class="pen">${esc(p.mean)}</span></button>
+    <button class="ibtn" data-act="say" data-id="${p.id}" aria-label="Listen">${SPEAK_SVG}</button></div>`).join('')}</div></div>`).join('');
+}
+
+/* ---- detail dialog ---- */
+function fmtDue(x) {
+  if (!x.s) return 'Not studied yet';
+  const df = x.due - Date.now();
+  if (df <= 0) return 'Due for review now';
+  if (df < 36e5) return 'Next review in ' + Math.max(1, Math.round(df / 6e4)) + ' min';
+  if (df < DAY) return 'Next review in ' + Math.round(df / 36e5) + ' h';
+  return 'Next review in ' + Math.round(df / DAY) + ' days';
+}
+function openDetail(id) {
+  const it = ITEMS[id]; if (!it) return;
+  const x = peek(id), L = lvl(id), kana = isKana(it);
+  let body = '';
+  if (kana) {
+    const other = it.type === 'h' ? toKata(it.ch) : toHira(it.ch);
+    const grp = KANA_TABLE[it.type].find(g => g.key === it.group);
+    const words = VOCAB.filter(v => toHira(v.rd).indexOf(toHira(it.ch)) === 0).slice(0, 4);
+    body = `<div class="big glyph${it.ch.length > 1 ? ' two' : ''}">${esc(it.ch)}</div><p class="rom">${esc(it.ro)}</p>
+      <dl class="kv"><dt>${it.type === 'h' ? 'Katakana' : 'Hiragana'}</dt><dd class="glyph">${esc(other)}</dd><dt>Group</dt><dd>${grp.title}</dd><dt>Typing</dt><dd>${accepted(it).join(', ')}</dd></dl>
+      ${words.length ? `<h4>Words that start with ${esc(it.ch)}</h4><ul class="exl">${words.map(w => `<li><b>${esc(w.ch)}</b> <span>${esc(w.rd)}</span> <i>${esc(w.mean)}</i></li>`).join('')}</ul>` : ''}`;
+  } else if (it.type === 'j') {
+    body = `<div class="big glyph">${esc(it.ch)}</div><p class="rom">${esc(it.mean)}</p>
+      <dl class="kv"><dt>On'yomi</dt><dd>${it.on.map(esc).join('、') || '-'}</dd><dt>Kun'yomi</dt><dd>${it.kun.map(esc).join('、') || '-'}</dd><dt>Strokes</dt><dd>${it.strokes}</dd>
+      <dt>Theme</dt><dd>${esc(KANJI_CATS.find(c => c[0] === it.cat)[1])}${it.n5 ? ' · JLPT N5' : ''}</dd></dl>
+      <h4>Examples</h4><ul class="exl">${it.ex.map(e => `<li><b>${esc(e.w)}</b> <span>${esc(e.r)}</span> <i>${esc(e.m)}</i></li>`).join('')}</ul>`;
+  } else {
+    const ks = Array.from(it.ch).filter(c => KANJI_BY_CH[c]).filter((c, i, a) => a.indexOf(c) === i);
+    body = `<div class="big txt">${esc(it.ch)}</div><p class="rom">${esc(it.mean)}</p>
+      <dl class="kv"><dt>Reading</dt><dd>${esc(it.rd)}</dd><dt>Romaji</dt><dd>${esc(it.ro)}</dd>${it.sit ? `<dt>Use</dt><dd>${esc(it.sit)}</dd>` : `<dt>Topic</dt><dd>${esc(VOCAB_CATS.find(c => c[0] === it.cat)[1])}</dd>`}</dl>
+      ${ks.length ? `<h4>Kanji inside</h4><div class="chips">${ks.map(c => `<button class="chip" data-act="detail" data-id="j:${c}"><span class="glyph">${c}</span> ${esc(KANJI_BY_CH[c].mean)}</button>`).join('')}</div>` : ''}`;
+  }
+  const pad = (kana || it.type === 'j') ? `<h4>Practice writing</h4><div class="pad"><span class="padg glyph${it.ch.length > 1 ? ' two' : ''}">${esc(it.ch)}</span><canvas id="pad" width="640" height="640" aria-label="Drawing area"></canvas></div>
+      <div class="row"><button class="btn ghost" data-act="padclear">Clear</button><button class="btn ghost" data-act="padguide">Hide guide</button></div>` : '';
+  openModal(`<button class="x" data-act="closeModal" aria-label="Close">×</button>
+    <p class="eyebrow" style="--c:var(${colorOf(it)})"><span class="dotc"></span>${codeOf(it)} · ${TYPE_NAME[it.type]} · ${LVL_NAME[L]}</p>${body}
+    <div class="row mt"><button class="btn" data-act="say" data-id="${esc(id)}">${SPEAK_SVG} Listen</button>
+      ${L < 3 ? `<button class="btn ghost" data-act="known" data-id="${esc(id)}">I already know this</button>` : ''}
+      ${x.s ? `<button class="btn ghost" data-act="resetItem" data-id="${esc(id)}">Reset progress</button>` : ''}</div>
+    <p class="muted small">${fmtDue(x)}${x.s ? ` · ${x.c} correct, ${x.w} missed` : ''}</p>${pad}`);
+  initPad();
+}
+function initPad() {
+  const c = $('#pad'); if (!c) return;
+  const ctx = c.getContext('2d'); ctx.lineWidth = 22; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#000';
+  let down = false, last = null;
+  const pos = e => { const r = c.getBoundingClientRect(); return [(e.clientX - r.left) * c.width / r.width, (e.clientY - r.top) * c.height / r.height]; };
+  c.addEventListener('pointerdown', e => { down = true; last = pos(e); try { c.setPointerCapture(e.pointerId); } catch (x) {} ctx.beginPath(); ctx.moveTo(last[0], last[1]); ctx.lineTo(last[0] + 0.1, last[1]); ctx.stroke(); });
+  c.addEventListener('pointermove', e => { if (!down) return; const p = pos(e); ctx.beginPath(); ctx.moveTo(last[0], last[1]); ctx.lineTo(p[0], p[1]); ctx.stroke(); last = p; });
+  ['pointerup', 'pointercancel'].forEach(t => c.addEventListener(t, () => { down = false; }));
+}
+
+/* ---- dex actions ---- */
+ACT.detail = el => openDetail(el.dataset.id);
+ACT.closeModal = () => closeModal();
+ACT.say = el => { const it = ITEMS[el.dataset.id]; if (it) speak(speakText(it)); };
+ACT.toggleRomaji = () => { S.set.romaji = !S.set.romaji; save(); render(); };
+ACT.known = el => { markKnown(el.dataset.id); openDetail(el.dataset.id); if (route() !== 'games') render(); toast('Marked as mastered'); };
+ACT.resetItem = el => { resetItem(el.dataset.id); openDetail(el.dataset.id); if (route() !== 'games') render(); };
+ACT.padclear = () => { const c = $('#pad'); if (c) c.getContext('2d').clearRect(0, 0, c.width, c.height); };
+ACT.padguide = el => { const p = $('.pad'); const h = p.classList.toggle('hide'); el.textContent = h ? 'Show guide' : 'Hide guide'; };
+ACT.studyDeck = el => { UI.cfg.deck = el.dataset.v; UI.cfg.mode = 'mix'; UI.study = 'cards'; SESS = null; go('study'); };
+ACT.quizDeck = el => { UI.quiz.deck = el.dataset.v; UI.study = 'quiz'; QZ = null; go('study'); };
+ACT.rushDeck = el => { UI.game.deck = el.dataset.v === 'hira' ? 'h' : 'k'; go('games'); setTimeout(() => startGame('rush'), 30); };
+
+/* ============ STUDY ============ */
+let SESS = null, QZ = null, LQ = null;
+
+function viewStudy() {
+  return `<section class="page"><header class="ph"><p class="eyebrow">勉強 · Study</p><h1>Daily practice</h1>
+    <p class="sub">Flashcards bring items back just before you would forget them. Quizzes and lessons fill the gaps.</p></header>
+    ${tabBar([['cards', 'Flashcards'], ['quiz', 'Quiz'], ['lessons', 'Lessons']], UI.study, 'study')}
+    <div id="studybody">${UI.study === 'cards' ? (SESS ? sessHTML() : cardSetup()) : UI.study === 'quiz' ? (QZ ? quizHTML() : quizSetup()) : lessonsHTML()}</div></section>`;
+}
+
+/* ---------- flashcards ---------- */
+function cardSetup() {
+  const c = UI.cfg, due = dueList(c.deck).length, nw = newList(c.deck).length;
+  return `<div class="card setup"><h2>Flashcard session</h2>
+    <p class="lab">Deck</p>${chipRow([['all', 'Everything']].concat(DECK_ORDER.map(k => [k, DECKS[k].label])), c.deck, 'cfg.deck')}
+    <p class="lab">What to study</p>${chipRow([['mix', 'Due, then new'], ['due', 'Only due'], ['new', 'Only new']], c.mode, 'cfg.mode')}
+    <p class="lab">Cards in this session</p>${chipRow([[5, '5'], [10, '10'], [20, '20'], [40, '40']], c.size, 'cfg.size')}
+    <p class="lab">Direction</p>${chipRow([['mixed', 'Mixed'], ['fwd', 'Character to meaning'], ['rev', 'Meaning to character']], c.dir, 'cfg.dir')}
+    <p class="muted">In this deck: <b>${due}</b> due for review, <b>${nw}</b> new.</p>
+    <button class="btn lg" data-act="startCards">Start session</button></div>`;
+}
+function newCardState() {
+  const id = SESS.q[SESS.i], c = UI.cfg;
+  SESS.reveal = peek(id).s === 0;
+  SESS.dir = c.dir === 'mixed' ? (Math.random() < 0.5 ? 'fwd' : 'rev') : c.dir;
+}
+function backHTML(it, dir) {
+  const g = dir === 'rev' ? `<div class="big ${isKana(it) || it.type === 'j' ? 'glyph' : 'txt'}">${esc(it.ch)}</div>` : '';
+  let d;
+  if (isKana(it)) d = `<p class="rom">${esc(it.ro)}</p><p class="muted">${it.type === 'h' ? 'Katakana' : 'Hiragana'}: <span class="glyph">${esc(it.type === 'h' ? toKata(it.ch) : toHira(it.ch))}</span></p>`;
+  else if (it.type === 'j') d = `<p class="rom">${esc(it.mean)}</p><p class="rd">${esc(kanjiRead(it))}</p><p class="muted">${esc(it.ex[0].w)} ${esc(it.ex[0].r)} · ${esc(it.ex[0].m)}</p>`;
+  else d = `<p class="rom">${esc(it.mean)}</p><p class="rd">${esc(it.rd)}</p><p class="muted">${esc(it.ro)}</p>`;
+  return g + d;
+}
+function nextHint(id, g) {
+  const x = peek(id);
+  if (g === 0) return '10 min';
+  const b = g === 1 ? Math.max(1, x.b) : Math.min(5, x.b + (g === 3 ? 2 : 1));
+  const d = g === 1 ? Math.max(1 / 24, GAP[b] * 0.5) : GAP[b];
+  return d < 1 ? '1 h' : (d < 2 ? Math.round(d * 10) / 10 : Math.round(d)) + (d <= 1 ? ' day' : ' days');
+}
+function sessHTML() {
+  if (SESS.done) {
+    const gain = today().xp - SESS.xp0, acc = pct(SESS.good, SESS.graded);
+    return `<div class="card done"><p class="eyebrow">Session complete</p><h2>Nice work</h2>
+      <div class="stats3"><div><b>${SESS.graded}</b><span>cards rated</span></div><div><b>${acc}%</b><span>remembered</span></div><div><b>+${gain}</b><span>XP</span></div></div>
+      ${SESS.newCount ? `<p class="muted">${SESS.newCount} new item${SESS.newCount > 1 ? 's' : ''} added to your reviews.</p>` : ''}
+      <div class="row"><button class="btn" data-act="startCards">Another session</button><button class="btn ghost" data-act="endSess">Back to setup</button></div></div>`;
+  }
+  const id = SESS.q[SESS.i], it = ITEMS[id], dir = SESS.dir, isNew = peek(id).s === 0;
+  const frontBig = isKana(it) || it.type === 'j' ? `<div class="big glyph">${esc(it.ch)}</div>` : `<div class="big txt">${esc(it.ch)}</div>`;
+  const front = dir === 'fwd' ? frontBig + `<p class="muted">${isKana(it) ? 'How is it read?' : 'What does it mean?'}</p>`
+    : `<p class="rom">${esc(answerOf(it))}</p><p class="muted">${isKana(it) ? 'Which character is this?' : 'How is it written?'}</p>`;
+  return `<div class="sess"><div class="sbar"><div class="prog"><i style="width:${(SESS.i / SESS.q.length * 100).toFixed(1)}%"></i></div><span>${SESS.i + 1} / ${SESS.q.length}</span><button class="link" data-act="endSess">End session</button></div>
+    <div class="flash" style="--c:var(${colorOf(it)})">
+      <p class="eyebrow"><span class="dotc"></span>${codeOf(it)} · ${TYPE_NAME[it.type]}${isNew ? ' · New' : ''}</p>
+      ${front}
+      ${SESS.reveal ? `<hr>${backHTML(it, dir)}<button class="ibtn sp" data-act="say" data-id="${esc(id)}" aria-label="Listen">${SPEAK_SVG}</button>` : `<button class="btn lg" data-act="flip">Show answer <kbd>Space</kbd></button>`}
+    </div>
+    ${SESS.reveal ? `<p class="muted ctr">${isNew ? 'New item. Study it, then rate it.' : 'How well did you remember it?'}</p><div class="grades">
+      ${[['Again', 0], ['Hard', 1], ['Good', 2], ['Easy', 3]].map(g => `<button class="gbtn g${g[1]}" data-act="grade" data-g="${g[1]}"><b>${g[0]}</b><span>${nextHint(id, g[1])}</span><kbd>${g[1] + 1}</kbd></button>`).join('')}</div>` : ''}</div>`;
+}
+ACT.startCards = () => {
+  const c = UI.cfg, due = dueList(c.deck), nw = newList(c.deck);
+  let q = c.mode === 'due' ? due : c.mode === 'new' ? nw : due.concat(nw);
+  q = q.slice(0, +c.size);
+  if (!q.length) { toast(c.mode === 'due' ? 'Nothing is due in this deck yet' : 'Nothing to study with these settings'); return; }
+  SESS = { q: q.map(i => i.id), i: 0, reveal: false, dir: 'fwd', graded: 0, good: 0, newCount: 0, xp0: today().xp, done: false };
+  newCardState(); render();
+};
+ACT.flip = () => { if (SESS && !SESS.reveal) { SESS.reveal = true; render(); } };
+ACT.grade = el => {
+  if (!SESS || !SESS.reveal || SESS.done) return;
+  const g = +el.dataset.g, id = SESS.q[SESS.i];
+  const wasNew = grade(id, g);
+  SESS.graded++; if (g > 0) SESS.good++; if (wasNew) SESS.newCount++;
+  g === 0 ? sfx.no() : sfx.ok();
+  if (g === 0) SESS.q.splice(Math.min(SESS.q.length, SESS.i + 4), 0, id);
+  SESS.i++;
+  if (SESS.i >= SESS.q.length) { SESS.done = true; sfx.win(); } else newCardState();
+  render();
+};
+ACT.endSess = () => { SESS = null; render(); };
+
+/* ---------- quiz ---------- */
+const QDECKS = [['hira', 'Hiragana'], ['kata', 'Katakana'], ['kana', 'Both kana'], ['kanji', 'Kanji'], ['vocab', 'Vocabulary'], ['phrase', 'Phrases']];
+const quizPool = deck => deck === 'kana' ? KANA : DECKS[deck].items;
+function quizSetup() {
+  const q = UI.quiz, canRead = q.deck === 'kanji' || q.deck === 'vocab';
+  return `<div class="card setup"><h2>Multiple-choice quiz</h2>
+    <p class="lab">Topic</p>${chipRow(QDECKS, q.deck, 'quiz.deck')}
+    <p class="lab">Question style</p>${chipRow([['mixed', 'Mixed'], ['fwd', 'See it, pick the answer'], ['rev', 'See the answer, pick it']].concat(canRead ? [['read', 'Readings']] : []), (q.dir === 'read' && !canRead) ? 'mixed' : q.dir, 'quiz.dir')}
+    <p class="lab">Questions</p>${chipRow([[10, '10'], [20, '20'], [30, '30']], q.size, 'quiz.size')}
+    <p class="muted">Questions favour items you have not mastered yet. Correct answers earn 1 XP each, plus 5 for a perfect score.</p>
+    <button class="btn lg" data-act="startQuiz">Start quiz</button></div>`;
+}
+function readingsOf(it) { return it.type === 'j' ? it.on.concat(it.kun) : [it.rd]; }
+function buildQuestion(it, pool, dir) {
+  const kana = isKana(it);
+  if (dir === 'read' && !(it.type === 'j' || (it.type === 'v' && it.rd !== it.ch))) dir = Math.random() < 0.5 ? 'fwd' : 'rev';
+  let correct, label, cands, show, ask;
+  if (dir === 'fwd') { correct = answerOf(it); cands = pool.map(answerOf); ask = kana ? 'How is this read?' : 'What does this mean?'; show = it.ch; }
+  else if (dir === 'rev') { correct = it.ch; cands = pool.map(o => o.ch); ask = kana ? 'Which character is “' + it.ro + '”?' : 'Which one means “' + it.mean + '”?'; show = null; }
+  else {
+    const mine = readingsOf(it); correct = mine[rnd(mine.length)];
+    cands = pool.filter(o => o.type === it.type && o.id !== it.id).reduce((a, o) => a.concat(readingsOf(o)), []).filter(r => mine.indexOf(r) < 0);
+    ask = 'Which is a reading of this?'; show = it.ch;
+  }
+  const same = it.cat ? pool.filter(o => o.cat === it.cat).map(dir === 'rev' ? (o => o.ch) : answerOf) : [];
+  let c = shuffle(Array.from(new Set((dir === 'read' ? cands : same.concat(cands)).filter(t => t && t !== correct))));
+  if (dir !== 'read') c = shuffle(Array.from(new Set(cands.filter(t => t && t !== correct)))).slice(0, 12);
+  const near = dir !== 'read' && same.length ? shuffle(same.filter(t => t !== correct)).slice(0, 2) : [];
+  let wrong = Array.from(new Set(near.concat(c))).slice(0, 3);
+  const opts = shuffle(wrong.concat([correct])).map(t => ({ t, ok: t === correct }));
+  return { id: it.id, dir, show, ask, opts, glyphOpts: dir === 'rev' && (kana || it.type === 'j'), showKind: (kana || it.type === 'j') ? 'glyph' : 'txt' };
+}
+ACT.startQuiz = () => {
+  const q = UI.quiz, pool = quizPool(q.deck), size = Math.min(+q.size, pool.length);
+  const weak = shuffle(pool.filter(i => lvl(i.id) < 3)), strong = shuffle(pool.filter(i => lvl(i.id) >= 3));
+  const ns = Math.min(strong.length, Math.floor(size * 0.25));
+  let picked = weak.slice(0, size - ns).concat(strong.slice(0, ns));
+  if (picked.length < size) picked = picked.concat(shuffle(pool.filter(i => picked.indexOf(i) < 0)).slice(0, size - picked.length));
+  const canRead = q.deck === 'kanji' || q.deck === 'vocab';
+  const dirs = q.dir === 'read' && !canRead ? 'mixed' : q.dir;
+  QZ = { qs: shuffle(picked).map(it => buildQuestion(it, pool, dirs === 'mixed' ? (Math.random() < 0.5 ? 'fwd' : 'rev') : dirs)), i: 0, sel: null, score: 0, missed: [], xp0: today().xp, done: false };
+  render();
+};
+function quizHTML() {
+  if (QZ.done) {
+    const n = QZ.qs.length, gain = today().xp - QZ.xp0, perfect = QZ.score === n;
+    return `<div class="card done"><p class="eyebrow">${perfect ? 'Perfect score' : 'Quiz complete'}</p><h2>${QZ.score} / ${n}</h2>
+      <div class="stats3"><div><b>${pct(QZ.score, n)}%</b><span>correct</span></div><div><b>${QZ.missed.length}</b><span>to review</span></div><div><b>+${gain}</b><span>XP</span></div></div>
+      ${QZ.missed.length ? `<h4>Review these</h4><ul class="exl">${QZ.missed.map(id => { const it = ITEMS[id]; return `<li><button class="link" data-act="detail" data-id="${esc(id)}"><b class="${isKana(it) || it.type === 'j' ? 'glyph' : ''}">${esc(it.ch)}</b></button> <i>${esc(answerOf(it))}${it.type === 'j' ? ' · ' + esc(kanjiRead(it)) : ''}</i></li>`; }).join('')}</ul>` : ''}
+      <div class="row"><button class="btn" data-act="startQuiz">Quiz again</button><button class="btn ghost" data-act="endQuiz">Back to setup</button></div></div>`;
+  }
+  const q = QZ.qs[QZ.i], done = QZ.sel != null;
+  return `<div class="sess"><div class="sbar"><div class="prog"><i style="width:${(QZ.i / QZ.qs.length * 100).toFixed(1)}%"></i></div><span>${QZ.i + 1} / ${QZ.qs.length}</span><button class="link" data-act="endQuiz">End quiz</button></div>
+    <div class="flash" style="--c:var(${colorOf(ITEMS[q.id])})">
+      ${q.show ? `<div class="big ${q.showKind}">${esc(q.show)}</div>` : ''}<p class="${q.show ? 'muted' : 'rom'}">${esc(q.ask)}</p></div>
+    <div class="opts">${q.opts.map((o, i) => `<button class="opt${done ? (o.ok ? ' ok' : (QZ.sel === i ? ' bad' : ' off')) : ''}" data-act="qans" data-i="${i}" ${done ? 'disabled' : ''}><kbd>${i + 1}</kbd><span class="${q.glyphOpts ? 'glyph gl' : ''}">${esc(o.t)}</span></button>`).join('')}</div>
+    ${done ? `<div class="fb ${q.opts[QZ.sel].ok ? 'ok' : 'bad'}"><b>${q.opts[QZ.sel].ok ? 'Correct' : 'Not quite'}</b> ${q.opts[QZ.sel].ok ? '' : 'The answer is ' + esc(q.opts.find(o => o.ok).t) + '.'}
+      <button class="btn" data-act="qnext">${QZ.i + 1 >= QZ.qs.length ? 'See results' : 'Next'} <kbd>Enter</kbd></button></div>` : ''}</div>`;
+}
+ACT.qans = el => {
+  if (!QZ || QZ.sel != null || QZ.done) return;
+  const k = +el.dataset.i, q = QZ.qs[QZ.i]; QZ.sel = k;
+  const ok = q.opts[k].ok; touch(q.id, ok);
+  if (ok) { QZ.score++; addXP(1); sfx.ok(); } else { QZ.missed.push(q.id); sfx.no(); }
+  render();
+};
+ACT.qnext = () => {
+  if (!QZ || QZ.sel == null) return;
+  QZ.sel = null; QZ.i++;
+  if (QZ.i >= QZ.qs.length) {
+    QZ.done = true;
+    if (QZ.score === QZ.qs.length) { S.perfect++; addXP(5); sfx.win(); } checkAch(); save();
+  }
+  render();
+};
+ACT.endQuiz = () => { QZ = null; render(); };
+
+/* ---------- lessons ---------- */
+function lessonsHTML() {
+  if (UI.lesson) return lessonView(LESSONS.find(l => l.id === UI.lesson));
+  const done = LESSONS.filter(l => S.lessons[l.id]).length;
+  return `<p class="muted">${done} of ${LESSONS.length} lessons complete. Answer both questions at the end of a lesson to finish it and earn 10 XP.</p>
+    <div class="lessons">${LESSONS.map((l, i) => `<button class="lcard${S.lessons[l.id] ? ' done' : ''}" data-act="openLesson" data-id="${l.id}"><span class="ljp">${l.jp}</span><span class="lt">${esc(l.title)}</span><span class="ls">${S.lessons[l.id] ? 'Completed' : 'Lesson ' + (i + 1)}</span></button>`).join('')}</div>`;
+}
+function lessonView(l) {
+  if (!LQ || LQ.id !== l.id) LQ = { id: l.id, a: l.quiz.map(() => null) };
+  const all = LQ.a.every(a => a != null), right = LQ.a.every((a, i) => a === l.quiz[i].a);
+  return `<div class="lesson"><button class="link" data-act="closeLesson">‹ All lessons</button>
+    <p class="eyebrow">${l.jp}</p><h2>${esc(l.title)}</h2><div class="prose">${l.body}</div>
+    <h4>Examples</h4><ul class="exl ex2">${l.ex.map(e => `<li><span class="jp">${esc(e[0])}</span><span class="r">${esc(e[1])}</span><i>${esc(e[2])}</i><button class="ibtn" data-act="sayText" data-t="${esc(e[0])}" aria-label="Listen">${SPEAK_SVG}</button></li>`).join('')}</ul>
+    <h4>Check yourself</h4>${l.quiz.map((q, qi) => `<div class="lq"><p><b>${qi + 1}.</b> ${esc(q.q)}</p><div class="opts">${q.o.map((o, oi) => {
+      const a = LQ.a[qi], st = a == null ? '' : (oi === q.a ? ' ok' : (a === oi ? ' bad' : ' off'));
+      return `<button class="opt${st}" data-act="lans" data-q="${qi}" data-i="${oi}" ${a != null ? 'disabled' : ''}><span>${esc(o)}</span></button>`;
+    }).join('')}</div></div>`).join('')}
+    ${all ? `<div class="fb ${right ? 'ok' : 'bad'}"><b>${right ? (S.lessons[l.id] ? 'Lesson complete' : 'Lesson complete, +10 XP') : 'Almost'}</b> ${right ? '' : 'Review the examples and try again.'}
+      ${right ? '' : '<button class="btn" data-act="lretry">Try again</button>'}</div>` : ''}</div>`;
+}
+ACT.openLesson = el => { UI.lesson = el.dataset.id; LQ = null; render(); window.scrollTo(0, 0); };
+ACT.closeLesson = () => { UI.lesson = null; LQ = null; render(); };
+ACT.sayText = el => speak(el.dataset.t);
+ACT.lans = el => {
+  const l = LESSONS.find(x => x.id === UI.lesson); if (!l || !LQ) return;
+  const qi = +el.dataset.q, oi = +el.dataset.i; if (LQ.a[qi] != null) return;
+  LQ.a[qi] = oi; l.quiz[qi].a === oi ? sfx.ok() : sfx.no();
+  if (LQ.a.every(a => a != null) && LQ.a.every((a, i) => a === l.quiz[i].a) && !S.lessons[l.id]) { S.lessons[l.id] = Date.now(); addXP(10); sfx.win(); }
+  render();
+};
+ACT.lretry = () => { LQ = null; render(); };
+
+/* ============ GAMES ============ */
+UI.game.mdeck = 'hira';
+let GAME = null;
+const G = {};
+function stopGame() { if (GAME && GAME.stop) GAME.stop(); GAME = null; }
+const GAMES = [
+  ['rush', 'Kana Rush', 'Type the reading of each kana as fast as you can. You have 60 seconds and combos raise your score.', 'Typing', '--c-hira'],
+  ['drop', 'Kana Drop', 'Kana fall from the top. Type each reading before it lands. Three misses and it is over.', 'Typing', '--c-kata'],
+  ['match', 'Memory Match', 'Flip cards and pair every character with its reading or meaning. Fewer moves score more.', 'Memory', '--c-kanji'],
+  ['build', 'Sentence Builder', 'Put Japanese words in the right order to say the English sentence. Eight rounds.', 'Grammar', '--c-vocab'],
+  ['bolt', 'Lightning Round', 'True or false against the clock. Kana, kanji and words are mixed. 30 seconds.', 'Speed', '--c-phrase']
+];
+function viewGames() {
+  const g = UI.game;
+  return `<section class="page"><header class="ph"><p class="eyebrow">遊び · Games</p><h1>Minigames</h1>
+    <p class="sub">Short rounds that train recall and speed. Every game updates your progress and earns XP.</p></header>
+    <div class="card setup"><p class="lab">Kana for the typing games</p>
+      ${chipRow([['h', 'Hiragana'], ['k', 'Katakana'], ['hk', 'Both']], g.deck, 'game.deck')}
+      ${chipRow([['basic', 'Basic sounds'], ['all', 'Every kana']], g.scope, 'game.scope')}
+      <p class="lab">Memory Match</p>
+      ${chipRow([['hira', 'Hiragana'], ['kata', 'Katakana'], ['kanji', 'Kanji'], ['vocab', 'Vocabulary']], g.mdeck, 'game.mdeck')}
+      ${chipRow([[6, '6 pairs'], [8, '8 pairs'], [10, '10 pairs']], g.pairs, 'game.pairs')}</div>
+    <div class="gcards">${GAMES.map(x => `<article class="gcard" style="--c:var(${x[4]})"><p class="eyebrow"><span class="dotc"></span>${x[3]}</p><h3>${x[1]}</h3><p class="muted">${x[2]}</p>
+      <div class="gfoot"><span class="muted small">Best <b>${S.best[x[0]] || 0}</b></span><button class="btn" data-act="play" data-v="${x[0]}">Play</button></div></article>`).join('')}</div></section>`;
+}
+ACT.play = el => startGame(el.dataset.v);
+ACT.gexit = () => { stopGame(); render(); };
+function startGame(key) {
+  stopGame();
+  const meta = GAMES.find(x => x[0] === key);
+  $('#view').innerHTML = `<section class="page"><div class="gbar"><button class="link" data-act="gexit">‹ Games</button><span class="eyebrow">${meta[1]}</span></div><div id="gstage" class="gstage"></div></section>`;
+  window.scrollTo(0, 0);
+  G[key]($('#gstage'));
+}
+const kanaPool = () => { const g = UI.game; return KANA.filter(i => (g.deck === 'hk' || i.type === g.deck) && (g.scope === 'all' || i.group === 'basic')); };
+function finishGame(key, score, stats, missed, xp) {
+  const meta = GAMES.find(x => x[0] === key), st = $('#gstage'); if (!st) return;
+  const nb = score > (S.best[key] || 0); if (nb) S.best[key] = score;
+  S.games++; today().games++; addXP(xp); sfx.win(); checkAch(); save();
+  st.innerHTML = `<div class="card done"><p class="eyebrow">${nb ? 'New best score' : 'Round over'}</p><h2>${score} points</h2>
+    <div class="stats3">${stats.map(s => `<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div>
+    <p class="muted">Best ${S.best[key]} · +${xp} XP</p>
+    ${missed.length ? `<h4>Practise these</h4><div class="chips">${missed.slice(0, 12).map(id => { const it = ITEMS[id]; return `<button class="chip" data-act="detail" data-id="${esc(id)}"><span class="${isKana(it) || it.type === 'j' ? 'glyph' : ''}">${esc(it.ch)}</span> ${esc(answerOf(it))}</button>`; }).join('')}</div>` : ''}
+    <div class="row mt"><button class="btn" data-act="play" data-v="${key}">Play again</button><button class="btn ghost" data-act="gexit">Back to games</button></div></div>`;
+}
+const shakeEl = el => { if (!el) return; el.classList.add('shake'); setTimeout(() => el.classList.remove('shake'), 320); };
+const INPUT_ATTR = 'type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"';
+
+/* ---- Kana Rush ---- */
+G.rush = function (st) {
+  const pool = kanaPool(); let cur = null, last = null, score = 0, combo = 0, bestCombo = 0, ok = 0, miss = 0, left = 60; const missed = new Set();
+  st.innerHTML = `<div class="ghud"><span>Time <b id="gt">60</b></span><span>Score <b id="gs">0</b></span><span>Combo <b id="gc">0</b></span></div>
+    <div class="gbig glyph" id="gg" aria-live="polite"></div><p class="hint" id="gh">Type the reading, for example <i>ka</i></p>
+    <input id="gin" class="gin" ${INPUT_ATTR} aria-label="Type the reading">
+    <div class="row ctr"><button class="btn ghost" id="gskip">Skip</button></div>`;
+  const inp = $('#gin', st), gg = $('#gg', st), gh = $('#gh', st);
+  const hud = () => { $('#gt', st).textContent = left; $('#gs', st).textContent = score; $('#gc', st).textContent = combo; };
+  const next = () => { do { cur = pool[rnd(pool.length)]; } while (pool.length > 1 && cur === last); last = cur; gg.textContent = cur.ch; inp.value = ''; };
+  const wrong = () => { miss++; combo = 0; missed.add(cur.id); touch(cur.id, false); sfx.no(); gh.textContent = 'It was ' + cur.ro; shakeEl(gg); next(); hud(); };
+  inp.addEventListener('input', () => {
+    const v = inp.value.trim().toLowerCase(); if (!v) return;
+    const acc = accepted(cur);
+    if (acc.indexOf(v) >= 0) { ok++; combo++; bestCombo = Math.max(bestCombo, combo); score += 10 + 2 * Math.min(combo, 10); touch(cur.id, true); sfx.tick(); gh.textContent = ''; next(); hud(); }
+    else if (!acc.some(a => a.indexOf(v) === 0)) wrong();
+  });
+  $('#gskip', st).addEventListener('click', () => { wrong(); inp.focus(); });
+  const tm = setInterval(() => { left--; hud(); if (left <= 0) { clearInterval(tm); GAME = null; finishGame('rush', score, [[ok, 'correct'], [pct(ok, ok + miss) + '%', 'accuracy'], [bestCombo, 'best combo']], Array.from(missed), Math.round(score / 15)); } }, 1000);
+  GAME = { stop: () => clearInterval(tm) };
+  next(); hud(); inp.focus();
+};
+
+/* ---- Kana Drop ---- */
+G.drop = function (st) {
+  const pool = kanaPool(), H = 380;
+  st.innerHTML = `<div class="ghud"><span>Lives <b id="dl">3</b></span><span>Score <b id="ds">0</b></span><span>Level <b id="dv">1</b></span></div>
+    <div class="dstage" id="dst" style="height:${H}px"></div>
+    <input id="din" class="gin" ${INPUT_ATTR} aria-label="Type the reading of a falling kana"><p class="hint ctr">Type a reading to clear the lowest matching character.</p>`;
+  const stage = $('#dst', st), inp = $('#din', st);
+  let items = [], lives = 3, score = 0, cleared = 0, lv = 1, spawnT = 0.3, lastT = performance.now(), raf = 0, over = false; const missed = new Set();
+  const hud = () => { $('#dl', st).textContent = lives; $('#ds', st).textContent = score; $('#dv', st).textContent = lv; };
+  const spawn = () => {
+    const it = pool[rnd(pool.length)], el = document.createElement('span'); el.className = 'fall glyph'; el.textContent = it.ch;
+    el.style.left = (10 + rnd(Math.max(1, stage.clientWidth - 70))) + 'px'; stage.appendChild(el); items.push({ it, el, y: -50 });
+  };
+  const end = () => { over = true; cancelAnimationFrame(raf); GAME = null; finishGame('drop', score, [[cleared, 'cleared'], [lv, 'level reached'], [missed.size, 'missed']], Array.from(missed), Math.round(score / 12)); };
+  const tick = now => {
+    if (over) return;
+    const dt = Math.min(0.05, (now - lastT) / 1000); lastT = now; spawnT -= dt;
+    if (spawnT <= 0) { spawn(); spawnT = Math.max(0.8, 2.3 - lv * 0.17); }
+    const v = 45 + lv * 9;
+    items.forEach(o => { o.y += v * dt; o.el.style.transform = 'translateY(' + o.y + 'px)'; });
+    items.filter(o => o.y > H - 46).forEach(o => { o.el.remove(); items.splice(items.indexOf(o), 1); lives--; missed.add(o.it.id); touch(o.it.id, false); sfx.no(); });
+    hud(); if (lives <= 0) { end(); return; }
+    raf = requestAnimationFrame(tick);
+  };
+  inp.addEventListener('input', () => {
+    const v = inp.value.trim().toLowerCase(); if (!v) return;
+    const hit = items.filter(o => accepted(o.it).indexOf(v) >= 0).sort((a, b) => b.y - a.y)[0];
+    if (hit) {
+      hit.el.classList.add('pop'); const el = hit.el; setTimeout(() => el.remove(), 180); items.splice(items.indexOf(hit), 1);
+      cleared++; lv = 1 + Math.floor(cleared / 8); score += 10 + lv * 2; touch(hit.it.id, true); sfx.tick(); inp.value = ''; hud();
+    } else if (!items.some(o => accepted(o.it).some(a => a.indexOf(v) === 0))) inp.value = '';
+  });
+  GAME = { stop: () => { over = true; cancelAnimationFrame(raf); } };
+  hud(); inp.focus(); raf = requestAnimationFrame(tick);
+};
+
+/* ---- Memory Match ---- */
+G.match = function (st) {
+  const deck = UI.game.mdeck, n = +UI.game.pairs, used = {}, picks = [];
+  shuffle(DECKS[deck].items).forEach(it => { const a = answerOf(it); if (picks.length < n && !used[a]) { used[a] = 1; picks.push(it); } });
+  const cards = shuffle(picks.reduce((a, it) => a.concat([{ p: it.id, t: it.ch, g: isKana(it) || it.type === 'j' }, { p: it.id, t: answerOf(it), g: false }]), []));
+  let open = [], moves = 0, found = 0, lock = false; const t0 = Date.now();
+  st.innerHTML = `<div class="ghud"><span>Moves <b id="mm">0</b></span><span>Pairs <b id="mp">0/${n}</b></span><span>Time <b id="mt">0</b></span></div>
+    <div class="mgrid" style="--cols:${n === 10 ? 5 : 4}">${cards.map((c, i) => `<button class="mc" data-i="${i}" data-p="${esc(c.p)}" aria-label="Card ${i + 1}"><span class="mf">${c.g ? '日' : '本'}</span><span class="mb ${c.g ? 'glyph' : ''}">${esc(c.t)}</span></button>`).join('')}</div>`;
+  const tm = setInterval(() => { const t = $('#mt', st); if (t) t.textContent = Math.round((Date.now() - t0) / 1000); }, 500);
+  GAME = { stop: () => clearInterval(tm) };
+  const btn = i => $('.mc[data-i="' + i + '"]', st);
+  st.onclick = e => {
+    const b = e.target.closest('.mc'); if (!b || lock) return;
+    const i = +b.dataset.i; if (open.indexOf(i) >= 0 || b.classList.contains('done')) return;
+    b.classList.add('open'); open.push(i); sfx.tick();
+    if (open.length < 2) return;
+    moves++; $('#mm', st).textContent = moves;
+    const [a, c] = open;
+    if (cards[a].p === cards[c].p) {
+      [a, c].forEach(k => { btn(k).classList.add('done'); }); touch(cards[a].p, true); found++; $('#mp', st).textContent = found + '/' + n; open = []; sfx.ok();
+      if (found === n) {
+        clearInterval(tm); GAME = null; const secs = Math.round((Date.now() - t0) / 1000);
+        setTimeout(() => finishGame('match', Math.max(n * 10, n * 120 - moves * 15 - secs * 2), [[moves, 'moves'], [secs + 's', 'time'], [n, 'pairs']], [], n * 2 + (moves === n ? 5 : 0)), 500);
+      }
+    } else { lock = true; setTimeout(() => { [a, c].forEach(k => { const x = btn(k); if (x) x.classList.remove('open'); }); open = []; lock = false; }, 800); }
+  };
+};
+
+/* ---- Sentence Builder ---- */
+G.build = function (st) {
+  const order = sample(SENTENCES, 8); let ri = 0, score = 0, first = 0;
+  GAME = { stop: () => { st.onclick = null; } };
+  function round() {
+    const jp = order[ri][0], en = order[ri][1], toks = jp.split('|');
+    let bank = shuffle(toks.map((t, i) => ({ t, i })));
+    while (toks.length > 1 && bank.every((b, k) => b.i === k)) bank = shuffle(bank);
+    let ans = [], tries = 0, hints = 0, busy = false;
+    const draw = () => {
+      $('#bans', st).innerHTML = ans.length ? ans.map((a, p) => `<button class="tok on" data-a="${p}">${esc(a.t)}</button>`).join('') : '<span class="muted">Tap the words below in order</span>';
+      $('#bbank', st).innerHTML = bank.map(b => `<button class="tok" data-b="${b.i}">${esc(b.t)}</button>`).join('');
+    };
+    const msg = t => { $('#bmsg', st).textContent = t; };
+    const advance = () => { ri++; if (ri >= order.length) { GAME = null; finishGame('build', score, [[first, 'first try'], [order.length, 'sentences'], [score, 'points']], [], Math.round(score / 35)); } else round(); };
+    st.innerHTML = `<div class="ghud"><span>Round <b>${ri + 1}/${order.length}</b></span><span>Score <b>${score}</b></span></div>
+      <div class="card"><p class="eyebrow">Say this in Japanese</p><p class="rom">${esc(en)}</p><div class="ans" id="bans"></div><div class="bank" id="bbank"></div>
+      <div class="row"><button class="btn" data-g="chk">Check</button><button class="btn ghost" data-g="hint">Hint (−30)</button><button class="btn ghost" data-g="skip">Skip</button></div><p class="hint" id="bmsg" aria-live="polite"></p></div>`;
+    draw();
+    st.onclick = e => {
+      if (busy) return;
+      const t = e.target.closest('button'); if (!t) return;
+      if (t.dataset.b != null) { const i = +t.dataset.b, k = bank.findIndex(b => b.i === i); if (k >= 0) { ans.push(bank.splice(k, 1)[0]); sfx.tick(); draw(); } }
+      else if (t.dataset.a != null) { const p = +t.dataset.a; bank.push(ans.splice(p, 1)[0]); draw(); }
+      else if (t.dataset.g === 'hint') {
+        if (ans.some((a, p) => a.i !== p)) { bank = bank.concat(ans); ans = []; }
+        const k = bank.findIndex(b => b.i === ans.length); if (k >= 0) { ans.push(bank.splice(k, 1)[0]); hints++; draw(); }
+      } else if (t.dataset.g === 'skip') { busy = true; msg('Answer: ' + jp.replace(/\|/g, ' ')); fails_(); setTimeout(advance, 1600); }
+      else if (t.dataset.g === 'chk') {
+        if (ans.map(a => a.t).join('|') === jp) {
+          busy = true; const pts = Math.max(30, 100 - 30 * hints - 25 * tries); score += pts; if (!tries && !hints) first++;
+          sfx.ok(); msg('Correct, +' + pts); speak(jp.replace(/\|/g, '')); setTimeout(advance, 1100);
+        } else {
+          tries++; sfx.no(); shakeEl($('#bans', st));
+          if (tries >= 3) { busy = true; msg('Answer: ' + jp.replace(/\|/g, ' ')); setTimeout(advance, 1800); } else msg('Not quite. Try another order.');
+        }
+      }
+    };
+    function fails_() { /* skipped rounds score nothing */ }
+  }
+  round();
+};
+
+/* ---- Lightning Round ---- */
+G.bolt = function (st) {
+  const pool = KANA.filter(i => i.group === 'basic').concat(KANJI, VOCAB);
+  let left = 30, score = 0, ok = 0, miss = 0, combo = 0, bestCombo = 0, cur = null, truth = true; const missed = new Set();
+  st.innerHTML = `<div class="ghud"><span>Time <b id="bt">30</b></span><span>Score <b id="bs">0</b></span><span>Streak <b id="bc">0</b></span></div>
+    <div class="card bolt"><div id="bq"></div></div>
+    <div class="row ctr"><button class="btn bad-b" data-v="0">False <kbd>←</kbd></button><button class="btn ok-b" data-v="1">True <kbd>→</kbd></button></div>
+    <p class="hint ctr" id="bh">Does the answer match the character?</p>`;
+  const hud = () => { $('#bt', st).textContent = left; $('#bs', st).textContent = score; $('#bc', st).textContent = combo; };
+  const ask = () => {
+    const it = pool[rnd(pool.length)]; cur = it; truth = Math.random() < 0.5;
+    let shown = answerOf(it);
+    if (!truth) { const alt = pool.filter(o => o.type === it.type && o.id !== it.id && answerOf(o) !== shown && (!it.cat || o.cat === it.cat)); const o2 = alt.length ? alt[rnd(alt.length)] : pool.find(o => o.type === it.type && answerOf(o) !== shown); shown = answerOf(o2); }
+    const g = isKana(it) || it.type === 'j';
+    $('#bq', st).innerHTML = `<div class="big ${g ? 'glyph' : 'txt'}">${esc(it.ch)}</div><p class="rom">${esc(shown)}</p>`;
+  };
+  const answer = v => {
+    if (left <= 0) return;
+    const right = (v === truth);
+    touch(cur.id, right);
+    if (right) { ok++; combo++; bestCombo = Math.max(bestCombo, combo); score += 10 + Math.min(combo, 10); sfx.tick(); $('#bh', st).textContent = ''; }
+    else { miss++; combo = 0; score = Math.max(0, score - 5); missed.add(cur.id); sfx.no(); $('#bh', st).textContent = truth ? 'That was correct: ' + answerOf(cur) : 'That was wrong. It is ' + answerOf(cur); }
+    hud(); ask();
+  };
+  st.onclick = e => { const b = e.target.closest('[data-v]'); if (b) answer(b.dataset.v === '1'); };
+  const key = e => { if (e.key === 'ArrowRight' || e.key === 't' || e.key === 'T') { e.preventDefault(); answer(true); } else if (e.key === 'ArrowLeft' || e.key === 'f' || e.key === 'F') { e.preventDefault(); answer(false); } };
+  document.addEventListener('keydown', key);
+  const tm = setInterval(() => { left--; hud(); if (left <= 0) { clearInterval(tm); document.removeEventListener('keydown', key); GAME = null; finishGame('bolt', score, [[ok, 'correct'], [pct(ok, ok + miss) + '%', 'accuracy'], [bestCombo, 'best streak']], Array.from(missed), Math.round(score / 12)); } }, 1000);
+  GAME = { stop: () => { clearInterval(tm); document.removeEventListener('keydown', key); } };
+  ask(); hud();
+};
+
+/* ============ ANKI (暗記) ============ */
+const AS = n => 'https://ankiweb.net/shared/info/' + n;
+const ANKI_ADDONS = [
+  { n: 'AJT Japanese', code: '1344485230', tier: 'essential', repo: 'https://github.com/Ajatt-Tools/Japanese',
+    what: 'Fills in furigana when you type a word, looks up pitch accent (NHK and Kanjium data), and can bulk-add both to many cards. It also has an analysis tool for the kanji you already know.',
+    note: 'The reading engine (MeCab) sometimes picks the wrong reading, so skim what it generates.' },
+  { n: 'AnkiConnect', code: '2055492159', tier: 'essential',
+    what: 'Lets other tools talk to Anki. Dictionary pop-ups such as Yomitan use it to send a word, reading and sentence to your deck in one click.',
+    note: 'Anki must be open while you mine cards.' },
+  { n: 'Review Heatmap', code: '1771074083', tier: 'recommended', repo: 'https://github.com/glutanimate/review-heatmap',
+    what: 'Shows a heatmap of your reviews on the main screen, with daily average and streak. Good for keeping the daily habit visible.', note: '' },
+  { n: 'Browser Play Button', code: '182970692', tier: 'recommended',
+    what: 'Adds a play button in the card browser for any field with audio, so you can check pronunciation while editing.', note: '' },
+  { n: 'Edit Field During Review', code: '385888438', tier: 'recommended',
+    what: 'Fix a typo or add a note to a field without leaving the review.', note: 'Turn on the fields you want in the add-on config.' },
+  { n: 'Advanced Browser', code: '874215009', tier: 'recommended',
+    what: 'Extra browser columns and sort options (review dates, average time, and more). Helps you find weak cards.', note: '' },
+  { n: 'AnkiMorphs', code: '472573498', tier: 'later', repo: 'https://github.com/mortii/anki-morphs',
+    what: 'Breaks sentences into morphemes and sorts your new sentence cards so the ones with one unknown word come first. Made for sentence mining once you know a few hundred words.',
+    note: 'Needs a morphemizer for Japanese (a companion add-on) and a Recalc after setup. Read its install guide first.' },
+  { n: 'Flexible Grading', code: '1715096333', tier: 'later',
+    what: 'Grade with Vim keys, answer from the front of the card, or switch off the Hard and Easy buttons.', note: '' },
+  { n: 'Mortician', code: '1255924302', tier: 'later',
+    what: 'Automatically buries cards you have failed too many times in a set period, so a stubborn card cannot wreck your day.', note: '' },
+  { n: 'Reset Card Scheduling', code: '1021636467', tier: 'later',
+    what: 'Turns selected cards back into new cards and clears their lapse counts. Handy for leeches.', note: '' },
+  { n: 'Media Converter', code: '1151815987', tier: 'later',
+    what: 'Converts images to WebP when you create cards, keeping your collection small.', note: '' }
+];
+const ANKI_SKIP = [
+  ['AwesomeTTS', 'Robotic text-to-speech is poor for learning pronunciation. Use native audio from decks or a dictionary.'],
+  ['Scheduler-changing add-ons', 'Tools such as Load Balancer or Auto Ease Factor change when cards are due and tend to break between Anki versions.'],
+  ['Kanji Colorizer', 'Stroke-order fonts such as KanjiStrokeOrders do the same job with less setup.']
+];
+const ANKI_DECKS = [
+  ['Japanese Basic Hiragana', '2183294427', 'Absolute beginner', 'Type the romaji before you flip. Basic sounds only.'],
+  ['Tofugu: Learn Hiragana', '1081858108', 'Beginner', 'Hiragana with mnemonics and pictures.'],
+  ['Tofugu: Learn Katakana', '1027153995', 'Beginner', 'Katakana with mnemonics.'],
+  ['Katakana Reading Practice', '2015522924', 'Beginner', 'Over 1,000 loanwords, names and brand words in katakana.'],
+  ['Japanese Core 2000, Step 01', '114060567', 'Beginner', 'Core vocabulary with sentences, audio and images.'],
+  ['Japanese Core 2000, Step 02', '1856422935', 'Beginner', 'Continues Step 01: kanji, verbs and daily expressions.'],
+  ['Genki 1 & 2 Kanji', '932226824', 'Textbook', 'Kanji from the Genki textbooks in lesson order.'],
+  ['All-in-One Kanji Deck', '798002504', 'All levels', 'Readings, stroke counts and origins for JLPT N5 to N1 kanji.'],
+  ['Official KanjiDamage', '748570187', 'Kanji', 'Kanji with mnemonics and stroke order.'],
+  ['Remembering the Kanji 1 (6th ed.)', '1654787298', 'Kanji', 'Companion to Heisig’s book.'],
+  ['JLPT Grammar from Jtest4you', '1696628291', 'N5 to N1', 'Grammar points with example sentences and translations.'],
+  ['Tae Kim grammar and anime course', '911122782', 'Beginner', 'Grammar with anime clips and breakdowns.']
+];
+const AN = { tier: 'all', deck: 'hira', out: '' };
+UI.an = AN;
+const TIERS = [['all', 'All'], ['essential', 'Essential'], ['recommended', 'Recommended'], ['later', 'Later']];
+
+/* ---- Anki import text (also used offline to write files) ---- */
+const ankiCell = s => String(s).replace(/[\t\r\n]+/g, ' ');
+function ankiRows(key) {
+  return DECKS[key].items.map(it => {
+    let back, tags;
+    if (isKana(it)) { back = `<b>${it.ro}</b><br>${it.type === 'h' ? 'Katakana' : 'Hiragana'}: ${it.type === 'h' ? toKata(it.ch) : toHira(it.ch)}`; tags = 'japanese::' + (it.type === 'h' ? 'hiragana' : 'katakana') + ' group::' + it.group; }
+    else if (it.type === 'j') {
+      back = `<b>${it.mean}</b><br>On: ${it.on.join('、') || '-'}<br>Kun: ${it.kun.join('、') || '-'}<br>Strokes: ${it.strokes}<br>` + it.ex.map(e => `${e.w} (${e.r}) ${e.m}`).join('<br>');
+      tags = 'japanese::kanji theme::' + it.cat + (it.n5 ? ' jlpt::n5' : '');
+    } else if (it.type === 'v') { back = `<b>${it.mean}</b><br>${it.rd}<br>${it.ro}`; tags = 'japanese::vocab topic::' + it.cat; }
+    else { back = `<b>${it.mean}</b><br>${it.rd}<br>${it.ro}`; tags = 'japanese::phrase situation::' + it.sit.toLowerCase().replace(/\s+/g, '-'); }
+    return [ankiCell(it.ch), ankiCell(back), ankiCell(tags)];
+  });
+}
+const ankiText = key => ['#separator:tab', '#html:true', '#tags column:3'].concat(ankiRows(key).map(r => r.join('\t'))).join('\n');
+
+function viewAnki() {
+  const addons = ANKI_ADDONS.filter(a => AN.tier === 'all' || a.tier === AN.tier);
+  const tierName = { essential: 'Essential', recommended: 'Recommended', later: 'Later' };
+  return `<section class="page"><header class="ph"><p class="eyebrow">暗記 · Anki</p><h1>Anki add-ons and decks</h1>
+    <p class="sub">Anki (暗記 means “memorisation”) is a free flashcard program. Use it next to this app for long-term review, then add the tools below to make Japanese cards faster to create and easier to study.</p></header>
+
+    <div class="card"><h2>Set up in three steps</h2><ol class="steps">
+      <li><b>Install Anki on a computer.</b> Add-ons only run in the desktop app. Phone apps can still study the decks, once you sync them with a free AnkiWeb account.</li>
+      <li><b>Install an add-on.</b> In Anki choose <i>Tools → Add-ons → Get Add-ons</i>, paste the code from below, press OK, then restart Anki.</li>
+      <li><b>Add decks.</b> Open a deck page on AnkiWeb, press Download, then double-click the file. Or import your own deck from this app (last section).</li></ol></div>
+
+    <div class="card"><h2>Already built into Anki</h2><ul class="plain">
+      <li><b>FSRS scheduling.</b> A newer review scheduler, switched on in <i>Deck options</i>. It can be more accurate than the classic one if you review every day.</li>
+      <li><b>Image Occlusion.</b> Hide parts of a picture, such as a map of Japan, and quiz yourself on them.</li>
+      <li><b>True retention in Stats.</b> Shows how many mature cards you actually remember, so the old True Retention add-on is no longer needed.</li></ul>
+      <p class="muted small">These need a recent Anki version (23.10 or later).</p></div>
+
+    <div class="sech"><h2>Add-ons</h2>${chipRow(TIERS, AN.tier, 'an.tier')}</div>
+    <div class="addons">${addons.map(a => `<article class="addon t-${a.tier}"><div class="ah"><h3>${esc(a.n)}</h3><span class="tier">${tierName[a.tier]}</span></div>
+      <p>${esc(a.what)}</p>${a.note ? `<p class="muted small">${esc(a.note)}</p>` : ''}
+      <div class="acode"><span>Code</span><b>${a.code}</b><button class="btn ghost sm" data-act="copyText" data-t="${a.code}">Copy</button>
+      <a class="lnk" href="${AS(a.code)}" target="_blank" rel="noopener">AnkiWeb page</a>${a.repo ? `<a class="lnk" href="${a.repo}" target="_blank" rel="noopener">Source</a>` : ''}</div></article>`).join('')}</div>
+    <div class="card tip"><h3>Companion tool: Yomitan</h3><p class="muted">Yomitan is a free browser extension that gives pop-up dictionary lookups on any Japanese web page. With AnkiConnect installed, one click sends the word, reading, meaning and sentence to Anki. It is not an Anki add-on, so it has no code. Search for “Yomitan” in your browser’s extension store.</p></div>
+    <div class="card"><h3>Skip these</h3><ul class="plain">${ANKI_SKIP.map(s => `<li><b>${esc(s[0])}.</b> ${esc(s[1])}</li>`).join('')}</ul></div>
+
+    <div class="sech"><h2>Decks that pair well with this app</h2></div>
+    <div class="decks">${ANKI_DECKS.map(d => `<a class="dk" href="${AS(d[1])}" target="_blank" rel="noopener"><b>${esc(d[0])}</b><span class="lvl">${esc(d[2])}</span><span class="muted small">${esc(d[3])}</span></a>`).join('')}</div>
+
+    <div class="sech"><h2>Take this app’s decks into Anki</h2></div>
+    <div class="card"><p class="muted">Pick a deck, copy the text, and paste it into a plain text file saved as UTF-8 (for example <i>hiragana.txt</i>). In Anki choose <i>File → Import</i>, select the file and the <i>Basic</i> note type (use <i>Basic (and reversed card)</i> to practise both directions). Anki reads the first column as the front, the second as the back and the third as tags.</p>
+      ${chipRow(DECK_ORDER.map(k => [k, DECKS[k].label + ' (' + DECKS[k].items.length + ')']), AN.deck, 'an.deck')}
+      <div class="row mt"><button class="btn" data-act="anBuild">Create import text</button>${AN.out ? '<button class="btn ghost" data-act="anCopy">Copy text</button>' : ''}</div>
+      ${AN.out ? `<label class="vh" for="anout">Anki import text</label><textarea id="anout" class="anout" readonly rows="8">${esc(AN.out)}</textarea>` : ''}</div>
+
+    <div class="card tip"><h3>A simple daily routine</h3><ul class="plain">
+      <li>Learn new characters and words here, with the tables, flashcards and minigames.</li>
+      <li>Move what you want to keep long term into Anki with the export above.</li>
+      <li>Do your Anki reviews first each day, then spend the rest of your time here on new material and games.</li></ul></div>
+
+    <p class="muted small">Add-on codes were checked against two public add-on guides (Coto Academy and Tatsumoto’s Japanese Anki guide). The AnkiMorphs and AnkiConnect codes come from their AnkiWeb links. Always confirm the add-on name on its AnkiWeb page before you install, and check that it supports your Anki version.</p></section>`;
+}
+ACT.copyText = el => copyText(el.dataset.t);
+function copyText(t) {
+  const done = () => toast('Copied');
+  const fallback = () => {
+    const ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) { toast('Select the text and copy it by hand'); } ta.remove();
+  };
+  try { navigator.clipboard.writeText(t).then(done, fallback); } catch (e) { fallback(); }
+}
+ACT.anBuild = () => { AN.out = ankiText(AN.deck); render(); const t = $('#anout'); if (t) t.scrollIntoView({ block: 'center' }); };
+ACT.anCopy = () => { const t = $('#anout'); if (t) { copyText(t.value); } };
+
+/* ============ TODAY & PROGRESS ============ */
+const firstNewDeck = () => DECK_ORDER.find(k => newList(k).length) || 'hira';
+function wordOfDay() { let h = 0; dayKey().split('').forEach(c => { h = (h * 31 + c.charCodeAt(0)) >>> 0; }); return VOCAB[h % VOCAB.length]; }
+const fmtDate = d => d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+
+function viewToday() {
+  const d = today(), g = S.set.goal, p = Math.min(1, d.xp / g), C = 2 * Math.PI * 44, li = levelInfo();
+  const due = dueList().length, nd = firstNewDeck(), nn = newList(nd).length, st = streak();
+  const missions = [['Reach your daily goal of ' + g + ' XP', Math.min(d.xp, g), g, 'study'], ['Review or learn 10 cards', Math.min(d.rev + d.learn, 10), 10, 'study'],
+    ['Learn 3 new items', Math.min(d.learn, 3), 3, 'study'], ['Play one minigame', Math.min(d.games, 1), 1, 'games']];
+  const days = []; for (let i = 6; i >= 0; i--) { const x = new Date(); x.setDate(x.getDate() - i); days.push([x, S.days[dayKey(x)] || { xp: 0, met: false }]); }
+  const mx = Math.max(g, ...days.map(x => x[1].xp));
+  const w = wordOfDay(), weak = Object.keys(S.items).filter(id => ITEMS[id] && S.items[id].w > 0 && lvl(id) < 3).sort((a, b) => S.items[b].w - S.items[a].w).slice(0, 6);
+  const total = ALL.length, mastered = ALL.filter(i => lvl(i.id) === 3).length;
+  return `<section class="page today">
+    <header class="ph"><p class="eyebrow">今日 · ${fmtDate(new Date())}</p><h1>${d.met ? 'Goal reached. Anything more is a bonus.' : st ? 'Keep your ' + st + '-day streak going' : 'Start your first streak today'}</h1></header>
+    <div class="hero">
+      <div class="goal card"><svg class="ring" viewBox="0 0 100 100" role="img" aria-label="${d.xp} of ${g} XP today"><circle cx="50" cy="50" r="44" class="rbg"/><circle cx="50" cy="50" r="44" class="rfg${d.met ? ' met' : ''}" stroke-dasharray="${(C * p).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 50 50)"/>
+        <text x="50" y="49" class="rt1">${d.xp}</text><text x="50" y="64" class="rt2">of ${g} XP</text></svg>
+        <div class="gtxt"><p class="lab">Level ${li.l}</p><div class="prog thin"><i style="width:${(li.p * 100).toFixed(0)}%"></i></div><p class="muted small">${S.xp - li.lo} / ${li.hi - li.lo} XP to level ${li.l + 1}</p>
+        <p class="muted small">${st} day streak · ${mastered} of ${total} items mastered</p></div></div>
+      <div class="go card"><p class="lab">Next up</p>
+        <button class="btn lg" data-act="reviewDue" ${due ? '' : 'disabled'}>Review ${due} due card${due === 1 ? '' : 's'}</button>
+        <button class="btn lg ghost" data-act="learnNew">Learn ${Math.min(5, nn)} new ${DECKS[nd].label.toLowerCase()}</button>
+        <button class="btn ghost" data-act="goto" data-v="games">Play a minigame</button></div></div>
+
+    <div class="cols2">
+      <div class="card"><h2>Today’s missions</h2><ul class="missions">${missions.map(m => `<li class="${m[1] >= m[2] ? 'done' : ''}"><button data-act="goto" data-v="${m[3]}"><span class="chk" aria-hidden="true"></span><span class="mtx">${esc(m[0])}</span><span class="mp">${m[1]}/${m[2]}</span></button></li>`).join('')}</ul></div>
+      <div class="card"><h2>Last 7 days</h2><div class="week" style="--goal:${(g / mx * 100).toFixed(1)}%">${days.map(x => `<div class="wb${x[1].met ? ' met' : ''}"><i style="height:${Math.max(x[1].xp ? 4 : 0, x[1].xp / mx * 100).toFixed(1)}%" title="${x[1].xp} XP"></i><span>${x[0].toLocaleDateString('en', { weekday: 'short' })}</span></div>`).join('')}</div>
+        <p class="muted small">The line marks your daily goal.</p></div></div>
+
+    <div class="card"><h2>Your dex</h2><div class="dexrows">${DECK_ORDER.map(k => { const s = deckStat(k), n = DECKS[k].items.length; return `<button class="dexrow" data-act="dexGo" data-v="${k}" style="--c:var(${DECKS[k].color})"><span class="dn"><i class="dotc"></i>${DECKS[k].label}</span>${segBar(k)}<span class="dc"><b>${s[3]}</b>/${n}</span></button>`; }).join('')}</div>
+      <p class="muted small">Bar colours show mastered, familiar and learning items.</p></div>
+
+    <div class="cols2">
+      <div class="card word"><p class="lab">Word of the day</p><div class="wj">${esc(w.ch)}</div><p class="wr">${esc(w.rd)} · ${esc(w.ro)}</p><p class="wm">${esc(w.mean)}</p>
+        <div class="row"><button class="btn ghost" data-act="say" data-id="${esc(w.id)}">${SPEAK_SVG} Listen</button><button class="btn ghost" data-act="detail" data-id="${esc(w.id)}">Details</button></div></div>
+      <div class="card"><h2>Needs attention</h2>${weak.length ? `<div class="chips">${weak.map(id => { const it = ITEMS[id]; return `<button class="chip" data-act="detail" data-id="${esc(id)}"><span class="${isKana(it) || it.type === 'j' ? 'glyph' : ''}">${esc(it.ch)}</span> ${esc(answerOf(it))}</button>`; }).join('')}</div><p class="muted small">Items you have missed most often.</p>` : '<p class="muted">Nothing yet. Items you miss will collect here so you can revisit them.</p>'}</div></div>
+  </section>`;
+}
+ACT.goto = el => { go(el.dataset.v); };
+ACT.dexGo = el => { UI.dex = el.dataset.v; go('dex'); };
+const startFromHome = (deck, mode, size) => { UI.cfg.deck = deck; UI.cfg.mode = mode; UI.cfg.size = size; UI.study = 'cards'; SESS = null; go('study'); ACT.startCards(); };
+ACT.reviewDue = () => startFromHome('all', 'due', 20);
+ACT.learnNew = () => startFromHome(firstNewDeck(), 'new', 5);
+
+/* ---------- progress ---------- */
+const PR = { code: '', confirm: false, restoreMsg: '' };
+function viewProgress() {
+  const li = levelInfo(), tot = S.tot, acc = pct(tot.ok, tot.all), mastered = ALL.filter(i => lvl(i.id) === 3).length, learning = ALL.filter(i => lvl(i.id) === 1 || lvl(i.id) === 2).length;
+  const cells = []; for (let i = 27; i >= 0; i--) { const x = new Date(); x.setDate(x.getDate() - i); const r = S.days[dayKey(x)], xp = r ? r.xp : 0; cells.push([x, xp, xp === 0 ? 0 : xp < S.set.goal * 0.5 ? 1 : xp < S.set.goal ? 2 : 3]); }
+  const set = S.set, earned = ACH.filter(a => S.ach[a[0]]).length;
+  return `<section class="page"><header class="ph"><p class="eyebrow">記録 · Progress</p><h1>Your record</h1></header>
+    <div class="stat4"><div class="card sc"><b>${li.l}</b><span>Level</span></div><div class="card sc"><b>${S.xp}</b><span>Total XP</span></div><div class="card sc"><b>${streak()}</b><span>Day streak</span></div><div class="card sc"><b>${acc}%</b><span>Answers right</span></div></div>
+    <div class="cols2"><div class="card"><h2>Collection</h2><p class="muted">${mastered} mastered, ${learning} in progress, ${ALL.length - mastered - learning} not started.</p>
+      <div class="dexrows">${DECK_ORDER.map(k => { const s = deckStat(k); return `<div class="dexrow static" style="--c:var(${DECKS[k].color})"><span class="dn"><i class="dotc"></i>${DECKS[k].label}</span>${segBar(k)}<span class="dc"><b>${s[3]}</b>/${DECKS[k].items.length}</span></div>`; }).join('')}</div></div>
+      <div class="card"><h2>Last 28 days</h2><div class="heat">${cells.map(c => `<i class="a${c[2]}" title="${c[0].toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}: ${c[1]} XP"></i>`).join('')}</div>
+      <p class="muted small">Darker squares mean more XP. The darkest means you hit your goal.</p>
+      <p class="muted">${tot.all} answers given · ${S.games} games played · ${Object.keys(S.lessons).length} of ${LESSONS.length} lessons</p></div></div>
+    <div class="card"><h2>Badges <span class="muted small">${earned} of ${ACH.length}</span></h2><div class="badges">${ACH.map(a => `<div class="badge${S.ach[a[0]] ? ' on' : ''}"><b>${esc(a[1])}</b><span>${esc(a[2])}</span></div>`).join('')}</div></div>
+    <div class="card"><h2>Best game scores</h2><ul class="plain scores">${GAMES.map(x => `<li><span>${x[1]}</span><b>${S.best[x[0]] || 0}</b></li>`).join('')}</ul></div>
+
+    <div class="card"><h2>Settings</h2>
+      <p class="lab">Daily goal</p><div class="chips">${[20, 30, 50, 100].map(v => `<button class="chip${set.goal === v ? ' on' : ''}" data-act="setPref" data-k="goal" data-v="${v}" aria-pressed="${set.goal === v}">${v} XP</button>`).join('')}</div>
+      <p class="lab">Character style</p><div class="chips">${[['klee', 'Textbook'], ['gothic', 'Gothic'], ['mincho', 'Mincho']].map(f => `<button class="chip${set.font === f[0] ? ' on' : ''}" data-act="setPref" data-k="font" data-v="${f[0]}" aria-pressed="${set.font === f[0]}">${f[1]} <span class="glyph">あ漢</span></button>`).join('')}</div>
+      <p class="lab">Theme</p><div class="chips">${[['system', 'Match device'], ['light', 'Light'], ['dark', 'Dark']].map(f => `<button class="chip${set.theme === f[0] ? ' on' : ''}" data-act="setPref" data-k="theme" data-v="${f[0]}" aria-pressed="${set.theme === f[0]}">${f[1]}</button>`).join('')}</div>
+      <p class="lab">Options</p><div class="chips">
+        ${[['romaji', 'Show romaji in tables'], ['sound', 'Sound effects'], ['speak', 'Spoken Japanese']].map(f => `<button class="chip${set[f[0]] ? ' on' : ''}" data-act="togglePref" data-k="${f[0]}" aria-pressed="${set[f[0]]}">${f[1]}</button>`).join('')}</div>
+      <p class="muted small">Spoken Japanese uses your browser’s voices. If you hear nothing, install a Japanese voice in your device settings.</p></div>
+
+    <div class="card"><h2>Backup and restore</h2><p class="muted" id="syncnote">${CLOUD.status === 'synced' ? '<b>Synced.</b> Your progress is also kept in your account, so it follows you across devices.' : '<b>This browser only.</b> Your progress is saved on this device. Account sync was not available for this visit.'}</p><p class="muted">You can also move progress by hand: create a backup code, copy it, and paste it into the same page on another device.</p>
+      <div class="row"><button class="btn" data-act="mkBackup">Create backup code</button>${PR.code ? '<button class="btn ghost" data-act="cpBackup">Copy code</button>' : ''}</div>
+      ${PR.code ? `<label class="vh" for="bkout">Backup code</label><textarea id="bkout" class="anout" readonly rows="3">${esc(PR.code)}</textarea>` : ''}
+      <label class="lab" for="bkin">Restore from a code</label><textarea id="bkin" class="anout" rows="3" placeholder="Paste a backup code here"></textarea>
+      <div class="row"><button class="btn ghost" data-act="rsBackup">Restore</button><span class="muted small" id="rsmsg">${esc(PR.restoreMsg)}</span></div>
+      <hr><h3>Start over</h3>${PR.confirm ? `<p class="fb bad">This erases all progress, badges and settings in this browser.</p><div class="row"><button class="btn danger" data-act="resetDo">Erase everything</button><button class="btn ghost" data-act="resetNo">Keep my progress</button></div>`
+        : '<button class="btn ghost" data-act="resetAsk">Reset all progress</button>'}</div></section>`;
+}
+ACT.setPref = el => { const k = el.dataset.k, v = el.dataset.v; S.set[k] = k === 'goal' ? +v : v; applyPrefs(); save(); refreshChips(); render(); };
+ACT.togglePref = el => { S.set[el.dataset.k] = !S.set[el.dataset.k]; save(); render(); };
+ACT.mkBackup = () => { try { PR.code = btoa(unescape(encodeURIComponent(JSON.stringify(S)))); } catch (e) { PR.code = ''; toast('Could not create a code'); } render(); };
+ACT.cpBackup = () => copyText(PR.code);
+ACT.rsBackup = () => {
+  const t = ($('#bkin') || {}).value || '';
+  try {
+    const o = JSON.parse(decodeURIComponent(escape(atob(t.trim()))));
+    if (!o || typeof o !== 'object' || !o.items || !o.set) throw new Error('shape');
+    S = Object.assign(DEF(), o); S.set = Object.assign(DEF().set, o.set); S.tot = Object.assign(DEF().tot, o.tot || {});
+    save(); applyPrefs(); PR.restoreMsg = 'Restored.'; PR.code = ''; refreshChips(); render(); toast('Progress restored');
+  } catch (e) { PR.restoreMsg = 'That code could not be read. Check that you copied all of it.'; const m = $('#rsmsg'); if (m) m.textContent = PR.restoreMsg; }
+};
+ACT.resetAsk = () => { PR.confirm = true; render(); };
+ACT.resetNo = () => { PR.confirm = false; render(); };
+ACT.resetDo = () => { S = DEF(); save(); PR.confirm = false; PR.code = ''; SESS = null; QZ = null; applyPrefs(); refreshChips(); render(); toast('Progress erased'); };
+
+/* ============ ACCOUNT SYNC (optional) ============ */
+/* Browser storage stays the primary copy. When the viewer's private store is reachable, progress is mirrored there. */
+const CLOUD = { ref: null, status: 'local', timer: 0, busy: false, dirty: false };
+async function cloudInit() {
+  try {
+    const c = window.claude; if (!c || !c.use) return;
+    const db = await c.use('db'), user = await c.use('user');
+    if (!db || !user) return;
+    const id = await user.id(); if (!id) return;
+    CLOUD.ref = db.doc('data/users/' + id + '/progress');
+    const snap = await CLOUD.ref.get(), d = snap.exists ? snap.data() : null;
+    if (d && typeof d.json === 'string' && (d.savedAt || 0) > (S.saved || 0)) {
+      const o = JSON.parse(d.json);
+      if (o && o.items && o.set) {
+        S = Object.assign(DEF(), o); S.set = Object.assign(DEF().set, o.set); S.tot = Object.assign(DEF().tot, o.tot || {}); S.saved = d.savedAt;
+        try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+        applyPrefs(); refreshChips(); if (!SESS && !QZ && !GAME) render(); toast('Progress loaded from your account');
+      }
+    } else if (!d || (S.saved || 0) > (d.savedAt || 0)) CLOUD.dirty = true;
+    CLOUD.status = 'synced';
+    if (CLOUD.dirty) cloudPush(); else if (route() === 'progress' && !SESS) render();
+  } catch (e) { CLOUD.status = 'local'; }
+}
+function cloudDirty() {
+  if (!CLOUD.ref) return;
+  CLOUD.dirty = true; clearTimeout(CLOUD.timer); CLOUD.timer = setTimeout(cloudPush, 4000);
+}
+async function cloudPush() {
+  if (!CLOUD.ref || CLOUD.busy || !CLOUD.dirty) return;
+  CLOUD.busy = true; CLOUD.dirty = false;
+  try { await CLOUD.ref.set({ json: JSON.stringify(S), savedAt: S.saved || Date.now() }); CLOUD.status = 'synced'; }
+  catch (e) { CLOUD.status = 'local'; CLOUD.dirty = false; }
+  CLOUD.busy = false;
+  if (CLOUD.dirty) cloudDirty();
+}
+
+/* ============ MAIN ============ */
+const VIEWS = { today: viewToday, dex: viewDex, study: viewStudy, games: viewGames, anki: viewAnki, progress: viewProgress };
+let lastRoute = null;
+function render() {
+  stopGame();
+  const r = route(), y = window.scrollY;
+  $('#view').innerHTML = VIEWS[r]();
+  $$('.nav a').forEach(a => { const on = a.dataset.r === r; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  refreshChips();
+  window.scrollTo(0, r === lastRoute ? y : 0); lastRoute = r;
+}
+
+ACT.ui = el => {
+  const k = el.dataset.k, v = el.dataset.v, parts = k.split('.');
+  let o = UI; for (let i = 0; i < parts.length - 1; i++) o = o[parts[i]];
+  o[parts[parts.length - 1]] = /^\d+$/.test(v) ? +v : v;
+  if (k === 'dex') UI.dexQ = '';
+  if (k === 'an.deck') AN.out = '';
+  if (k === 'study' && v !== 'lessons') UI.lesson = null;
+  render();
+};
+
+document.addEventListener('click', e => {
+  if (e.target.id === 'modal') { closeModal(); return; }
+  const el = e.target.closest('[data-act]');
+  if (!el || el.disabled) return;
+  const f = ACT[el.dataset.act];
+  if (f) { e.preventDefault(); f(el, e); }
+});
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.dataset && t.dataset.input === 'dexq') { UI.dexQ = t.value; const l = $('#dexlist'); if (l) l.innerHTML = dexList(); }
+});
+document.addEventListener('keydown', e => {
+  if (!$('#modal').hidden) { if (e.key === 'Escape') closeModal(); return; }
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'textarea' || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (route() !== 'study') return;
+  if (UI.study === 'cards' && SESS && !SESS.done) {
+    if (!SESS.reveal && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); ACT.flip(); }
+    else if (SESS.reveal && ['1', '2', '3', '4'].indexOf(e.key) >= 0) ACT.grade({ dataset: { g: String(+e.key - 1) } });
+  } else if (UI.study === 'quiz' && QZ && !QZ.done) {
+    if (QZ.sel == null && ['1', '2', '3', '4'].indexOf(e.key) >= 0 && +e.key <= QZ.qs[QZ.i].opts.length) ACT.qans({ dataset: { i: String(+e.key - 1) } });
+    else if (QZ.sel != null && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); ACT.qnext(); }
+  }
+});
+window.addEventListener('hashchange', render);
+
+loadState(); applyPrefs();
+try { speechSynthesis.getVoices(); } catch (e) {}
+render();
+cloudInit();
+
+</script>
+
+</body></html>
