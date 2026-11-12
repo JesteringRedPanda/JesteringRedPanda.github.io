@@ -1,0 +1,92 @@
+rules_version = '2';
+// 日本に行きたい: Firestore security rules.
+// Paste into Firebase console > Firestore Database > Rules > Publish.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    function validName(n) { return n is string && n.matches('^[a-z0-9_]{3,16}$'); }
+    function statKeys() { return ['xp', 'level', 'streak', 'mastered', 'lang', 'color', 'face', 'glyph', 'motto', 'lastActive', 'badges']; }
+    function sane(d) {
+      return d.xp is number && d.level is number && d.streak is number && d.mastered is number && d.badges is number
+        && d.lang is string && d.lang.size() <= 4
+        && d.color is string && d.color.size() <= 16
+        && d.face is string && d.face.size() <= 8
+        && d.glyph is string && d.glyph.size() <= 4
+        && d.motto is string && d.motto.size() <= 60;
+    }
+
+    // ---- public profile: readable by signed-in users, writable only by its owner ----
+    match /profiles/{uid} {
+      allow read: if signedIn();
+      // first username is free; the 14-day wait starts after the first change
+      allow create: if signedIn() && request.auth.uid == uid
+        && validName(request.resource.data.username)
+        && request.resource.data.username == request.resource.data.usernameLower
+        && !('usernameChangedAt' in request.resource.data)
+        && sane(request.resource.data);
+      allow update: if signedIn() && request.auth.uid == uid && sane(request.resource.data) && (
+        // stats and look only
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(statKeys())
+        ||
+        // username change: valid, at most once per 14 days, stamped with the server clock
+        ( request.resource.data.diff(resource.data).affectedKeys().hasOnly(['username', 'usernameLower', 'usernameChangedAt'])
+          && validName(request.resource.data.usernameLower)
+          && request.resource.data.username == request.resource.data.usernameLower
+          && request.resource.data.usernameChangedAt == request.time
+          && ( !('usernameChangedAt' in resource.data)
+               || resource.data.usernameChangedAt + duration.value(14, 'd') <= request.time ) )
+      );
+      allow delete: if false;
+    }
+
+    // ---- username registry: one document per taken name, so names stay unique ----
+    match /usernames/{lower} {
+      allow read: if signedIn();
+      allow create: if signedIn() && validName(lower)
+        && request.resource.data.keys().hasOnly(['uid'])
+        && request.resource.data.uid == request.auth.uid
+        && getAfter(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.usernameLower == lower;
+      allow update: if false;
+      // a name can be released only when the owner's profile no longer uses it
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid
+        && getAfter(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.usernameLower != lower;
+    }
+
+    // ---- learning progress: private to its owner ----
+    match /progress/{uid} {
+      allow read, write: if signedIn() && request.auth.uid == uid;
+    }
+
+    // ---- friend requests: id is "<from>_<to>" ----
+    match /requests/{id} {
+      allow get: if signedIn() && (resource == null || resource.data.from == request.auth.uid || resource.data.to == request.auth.uid);
+      allow list: if signedIn() && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid);
+      allow create: if signedIn() && request.resource.data.from == request.auth.uid
+        && id == request.auth.uid + '_' + request.resource.data.to
+        && request.resource.data.to != request.auth.uid
+        && request.resource.data.status == 'pending';
+      allow update: if signedIn() && resource.data.to == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+        && request.resource.data.status == 'accepted';
+      allow delete: if signedIn() && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid);
+    }
+
+    // ---- admins: create a document whose ID is the user's uid, in the Firebase console. Nobody can write it from the site. ----
+    match /admins/{uid} {
+      allow get: if signedIn() && request.auth.uid == uid;
+      allow list, write: if false;
+    }
+
+    // ---- content added from the Admin tab: everyone reads, admins write ----
+    match /quizItems/{id} {
+      allow read: if true;
+      allow write: if isAdmin() && (request.method == 'delete' || (request.resource.data.kind in ['quote', 'song']));
+    }
+    match /siteConfig/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}
